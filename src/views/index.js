@@ -7,6 +7,7 @@ import { Header } from "../components/header";
 import ExploreNewStyle from "./ExploreSection";
 import SubscribeNewslatter from "./subscribeNewslatter/SubscribeNewslatter";
 import { Footer } from "../components/footer";
+import { ProductsAndDiscount } from "./ProductsAndDiscount";
 
 const Landing = () => {
   return (
@@ -18,7 +19,10 @@ const Landing = () => {
       <ImageSection />
       <ExploreNewStyle />
       <SubscribeNewslatter />
-      {/* <Footer /> */}
+      <Grid sx={{ background: palette.black.light }}>
+        <ProductsAndDiscount />
+      </Grid>
+      <Footer />
     </>
   );
 };

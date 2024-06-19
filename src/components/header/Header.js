@@ -16,7 +16,7 @@ import Divider from "./../common/Divider";
 
 export default function TopAppBar() {
   return (
-    <Container maxwidth="md">
+    <Container maxWidth="lg">
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           position="static"

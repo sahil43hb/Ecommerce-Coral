@@ -6,7 +6,7 @@ export const MuiButton = (theme) => {
       styleOverrides: {
         root: {
           "&.MuiButton-sizeSmall": {
-            height: "32px",
+            // height: "32px",
             fontWeight: 400,
             fontSize: "16px",
             lineHeight: "21.79px",

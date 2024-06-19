@@ -9,8 +9,9 @@ import { palette } from "../theme/Palette";
 import BottomHoverProductsBadge from "../components/common/BottomHoverProductsBadge";
 
 const ExploreNewStyle = () => {
+  const exploreData = ExploreSectionData.slice(0, 4);
   return (
-    <Container maxwidth="md" sx={{ py: 6 }}>
+    <Container maxWidth="lg" sx={{ py: 6 }}>
       <Grid container spacing={2}>
         <Typography
           variant="body2"
@@ -25,7 +26,7 @@ const ExploreNewStyle = () => {
         </Grid>
         <Grid item xs={6}>
           <Grid container spacing={3.5}>
-            {ExploreSectionData.slice(0, 4).map((data, index) => (
+            {exploreData.map((data, index) => (
               <Grid item xs={6} key={index} sx={{ position: "relative" }}>
                 <Box
                   sx={{

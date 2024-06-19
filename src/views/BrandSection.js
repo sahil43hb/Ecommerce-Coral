@@ -1,13 +1,12 @@
-import { Grid, Container } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import React from "react";
 import { ImageSectionData } from "../utilities/data/ImageSectionData";
 import CardMedia from "../components/common/CardMedia";
-import { flexDisplay } from "../utilities/contants";
 
 const ImageSection = () => {
   return (
-    <Container maxwidth="md" sx={{ pt: 8, pb: 3 }}>
-      <Grid sx={{ ...flexDisplay }}>
+    <Container maxWidth="lg" sx={{ pt: 8, pb: 3 }}>
+      <Stack direction="row" sx={{ justifyContent: "space-between" }}>
         {ImageSectionData.map((data, index) => (
           <CardMedia
             key={index}
@@ -15,7 +14,7 @@ const ImageSection = () => {
             sx={{ width: "200px", height: "70px" }}
           />
         ))}
-      </Grid>
+      </Stack>
     </Container>
   );
 };

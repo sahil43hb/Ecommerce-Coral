@@ -8,7 +8,7 @@ import { buttonSx } from "../utilities/contants";
 
 const HeroSection = () => {
   return (
-    <Container maxwidth="md">
+    <Container maxWidth="lg">
       <Grid container sx={{ py: 8 }}>
         <Grid
           item
