@@ -6,6 +6,7 @@ import ImageSection from "./BrandSection";
 import { Header } from "../components/header";
 import ExploreNewStyle from "./ExploreSection";
 import SubscribeNewslatter from "./subscribeNewslatter/SubscribeNewslatter";
+import { Footer } from "../components/footer";
 
 const Landing = () => {
   return (
@@ -17,6 +18,7 @@ const Landing = () => {
       <ImageSection />
       <ExploreNewStyle />
       <SubscribeNewslatter />
+      {/* <Footer /> */}
     </>
   );
 };

@@ -16,6 +16,16 @@ export const customTypography = {
     fontSize: "16px",
     lineHeight: "21.79px",
   },
+  A: {
+    fontWeight: 400,
+    fontSize: "16px",
+    lineHeight: "24px",
+  },
+  A2: {
+    fontWeight: 400,
+    fontSize: "14px",
+    lineHeight: "24px",
+  },
   Span: {
     fontWeight: 600,
     fontSize: "16px",

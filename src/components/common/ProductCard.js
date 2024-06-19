@@ -36,7 +36,7 @@ const ProductCard = ({
             <Ribbon color={palette.primary.main} title="Hot" />
           </Box>
         )}
-        <CardMedia image={image} sx={{ height: "312px" }} />
+        <CardMedia image={image} sx={{ height: "400px" }} />
         <BottomHoverShopBadge />
       </Box>
       <Box sx={{ px: 1 }}>
