@@ -55,7 +55,6 @@ export const MuiTextField = (theme) => {
         },
         standard: {
           // Styles for standard variant
-
           borderBottomColor: palette.black.main,
           "&:hover": {
             borderBottomColor: palette.primary.main,

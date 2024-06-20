@@ -13,3 +13,9 @@ export const DiscountOnInstagram = [
   { id: 5, image: image5 },
   { id: 6, image: image6 },
 ];
+export const Categories = [
+  { title: "All Products", category: "products" },
+  { title: "T-Shirt", category: "shirt" },
+  { title: "Hoodies", category: "hoodies" },
+  { title: "Jacket", category: "jacket" },
+];

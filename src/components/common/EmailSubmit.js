@@ -4,7 +4,7 @@ import React from "react";
 const EmailSubmit = () => {
   return (
     <Container maxWidth="md">
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{ px: 5 }}>
         <Grid item xs={10.5}>
           <TextField
             fullWidth

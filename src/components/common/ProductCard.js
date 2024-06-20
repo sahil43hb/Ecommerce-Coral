@@ -13,6 +13,7 @@ const ProductCard = ({
   price,
   disPrice,
   category,
+  type,
 }) => {
   return (
     <Grid item xs={3} sx={{ position: "relative" }}>
@@ -43,13 +44,16 @@ const ProductCard = ({
         <Typography variant="h6" sx={{ pb: 1.5, pt: 2 }}>
           {productName}
         </Typography>
-        <Stack direction="row" sx={{ justifyContent: "space-between" }}>
-          <Typography variant="Span-3" sx={{ color: "rgba(0, 0, 0, 0.5)" }}>
-            {category}
+        <Stack direction="row" sx={{ justifyContent: "space-between", pb: 1 }}>
+          <Typography
+            variant="span-regular"
+            sx={{ color: "rgba(0, 0, 0, 0.5)" }}
+          >
+            {type}
           </Typography>
-          <Box sx={{}}>
+          <Box>
             <Typography
-              variant="Span"
+              variant="span-semibold"
               sx={{
                 color: disPrice ? palette.dark[300] : palette.dark.main,
                 textDecoration: disPrice ? "line-through" : "auto",
@@ -58,7 +62,7 @@ const ProductCard = ({
               {price}
             </Typography>
             <Typography
-              variant="Span"
+              variant="span-semibold"
               sx={{ color: palette.primary.main, pl: 1 }}
             >
               {disPrice}

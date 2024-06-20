@@ -13,7 +13,6 @@ export const MuiButton = (theme) => {
             padding: "5px, 15px, 5px, 15px",
           },
           "&.MuiButton-sizeMedium": {
-            // fontWeight: 400,
             fontSize: "18px",
             lineHeight: "21.09px",
           },
@@ -24,7 +23,6 @@ export const MuiButton = (theme) => {
             lineHeight: "33.98px",
             padding: "19px, 26px, 19px, 26px !important",
           },
-          // padding: "10px",
           textTransform: "none",
           zIndex: 4,
           border: "none",
@@ -44,7 +42,7 @@ export const MuiButton = (theme) => {
           },
         },
         outlined: {
-          //   color: palette.base.white,
+          color: palette.white.main,
           borderRadius: "5px",
           border: "none",
           background: "#627177",

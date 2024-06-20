@@ -11,6 +11,7 @@ import {
 } from "../../utilities/data/FooterSectionData";
 import payment from "../../assets/images/payment.svg";
 import NorthIcon from "@mui/icons-material/North";
+import FooterText from "../common/FooterText";
 
 const Footer = () => {
   const scrollToUP = () => {
@@ -41,7 +42,10 @@ const Footer = () => {
           >
             <CardMedia image={logo} sx={{ width: "180px", height: "34px" }} />
             <Box sx={{}}>
-              <Typography variant="Span-3" sx={{ color: palette.black[400] }}>
+              <Typography
+                variant="span-regular"
+                sx={{ color: palette.black[400] }}
+              >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua
               </Typography>
@@ -50,8 +54,9 @@ const Footer = () => {
               direction="row"
               sx={{ width: "50%", justifyContent: "space-between" }}
             >
-              {footerSocialMediaData.map((data) => (
+              {footerSocialMediaData.map((data, index) => (
                 <CardMedia
+                  key={index}
                   image={data.img}
                   sx={{ height: "25px", width: "25px" }}
                 />
@@ -60,33 +65,15 @@ const Footer = () => {
           </Grid>
           <Grid item xs={3}>
             <Typography variant="h6">CATALOG</Typography>
-            <Box sx={{ pt: 1.8 }}>
-              {footerCatalogData.map((data) => (
-                <Typography variant="A2" key={data.id} sx={{ ...HoverSx }}>
-                  {data.catalogName}
-                </Typography>
-              ))}
-            </Box>
+            <FooterText array={footerCatalogData} />
           </Grid>
           <Grid item xs={3}>
             <Typography variant="h6">ABOUT US</Typography>
-            <Box sx={{ pt: 1.8 }}>
-              {footerAboutData.map((data) => (
-                <Typography variant="A2" key={data.id} sx={{ ...HoverSx }}>
-                  {data.AboutName}
-                </Typography>
-              ))}
-            </Box>
+            <FooterText array={footerAboutData} />
           </Grid>
           <Grid item xs={2}>
             <Typography variant="h6">CUSTOMER SERVICES</Typography>
-            <Box sx={{ pt: 1.8 }}>
-              {footerCustomerServiceData.map((data) => (
-                <Typography variant="A2" key={data.id} sx={{ ...HoverSx }}>
-                  {data.serviceName}
-                </Typography>
-              ))}
-            </Box>
+            <FooterText array={footerCustomerServiceData} />
           </Grid>
         </Grid>
       </Container>
@@ -100,7 +87,10 @@ const Footer = () => {
               py: 1.8,
             }}
           >
-            <Typography variant="Span-3" sx={{ color: palette.white.main }}>
+            <Typography
+              variant="span-regular"
+              sx={{ color: palette.white.main }}
+            >
               © 2022 Coral , Inc.
             </Typography>
             <CardMedia

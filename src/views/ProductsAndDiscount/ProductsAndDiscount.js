@@ -7,13 +7,13 @@ import InstagramProductHover from "./../../components/common/InstagramProductHov
 
 const ProductsAndDiscount = () => {
   return (
-    <Container maxWidth="lg" sx={{ pt: 11, pb: 3 }}>
+    <Container maxWidth="lg" sx={{ pt: 14, pb: 3 }}>
       <Typography variant="h2" sx={{ textAlign: "center" }}>
         Follow Products And Discounts On Instagram
       </Typography>
       <Grid container spacing={2} sx={{ py: 6 }}>
-        {DiscountOnInstagram.map((data) => (
-          <Grid item xs={2} sx={{ position: "relative" }}>
+        {DiscountOnInstagram.map((data, index) => (
+          <Grid item xs={2} key={index} sx={{ position: "relative" }}>
             <Box
               sx={{
                 position: "relative",
@@ -33,7 +33,7 @@ const ProductsAndDiscount = () => {
       <Typography variant="h2" sx={{ textAlign: "center" }}>
         Or Subscribe To The Newsletter
       </Typography>
-      <Box sx={{ py: 7 }}>
+      <Box sx={{ py: 8 }}>
         <EmailSubmit />
       </Box>
     </Container>

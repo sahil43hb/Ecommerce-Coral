@@ -1,9 +1,9 @@
 import { Container, Stack } from "@mui/material";
 import React from "react";
-import { ImageSectionData } from "../utilities/data/ImageSectionData";
-import CardMedia from "../components/common/CardMedia";
+import { ImageSectionData } from "../../utilities/data/ImageSectionData";
+import CardMedia from "../../components/common/CardMedia";
 
-const ImageSection = () => {
+const BrandSection = () => {
   return (
     <Container maxWidth="lg" sx={{ pt: 8, pb: 3 }}>
       <Stack direction="row" sx={{ justifyContent: "space-between" }}>
@@ -19,4 +19,4 @@ const ImageSection = () => {
   );
 };
 
-export default ImageSection;
+export default BrandSection;

@@ -1,13 +1,15 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import { palette } from "./../theme/Palette";
-import HeroSection from "./HeroSection";
-import ImageSection from "./BrandSection";
+import { HeroSection } from "./HeroSection";
+import { BrandSection } from "./BrandSection";
 import { Header } from "../components/header";
-import ExploreNewStyle from "./ExploreSection";
-import SubscribeNewslatter from "./subscribeNewslatter/SubscribeNewslatter";
+import { ExploreNewStyle } from "./ExploreSection";
+import { OurProducts } from "./OurProducts";
 import { Footer } from "../components/footer";
 import { ProductsAndDiscount } from "./ProductsAndDiscount";
+import { CollectionImage } from "./CollectionImage";
+import { BestSeller } from "./BestSeller";
 
 const Landing = () => {
   return (
@@ -16,9 +18,11 @@ const Landing = () => {
         <Header />
         <HeroSection />
       </Grid>
-      <ImageSection />
+      <BrandSection />
       <ExploreNewStyle />
-      <SubscribeNewslatter />
+      <OurProducts />
+      <CollectionImage />
+      <BestSeller />
       <Grid sx={{ background: palette.black.light }}>
         <ProductsAndDiscount />
       </Grid>
