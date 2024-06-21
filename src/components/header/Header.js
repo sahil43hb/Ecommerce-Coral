@@ -10,13 +10,13 @@ import { Container, Grid, Stack } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 import { headerData } from "../../utilities/data/navbar-data";
 import CardMedia from "../common/CardMedia";
-import { buttonSx, flexDisplay } from "../../utilities/contants";
+import { buttonSx, flexDisplay } from "../../utilities/Contants";
 import TextLink from "../common/TextLink";
 import Divider from "./../common/Divider";
 
 export default function TopAppBar() {
   return (
-    <Container maxwidth="md">
+    <Container maxWidth="lg">
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           position="static"

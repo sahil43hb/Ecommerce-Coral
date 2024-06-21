@@ -9,26 +9,30 @@ export const customTypography = {
     fontWeight: 600,
     fontSize: "12px",
     lineHeight: "16.34px",
-    // fontFamily: "Open Sans",
   },
-  "Span-3": {
+  "span-regular": {
     fontWeight: 400,
     fontSize: "16px",
     lineHeight: "21.79px",
   },
-  A: {
+  "a-regular": {
     fontWeight: 400,
     fontSize: "16px",
     lineHeight: "24px",
   },
-  A2: {
+  "a2-regular": {
     fontWeight: 400,
     fontSize: "14px",
     lineHeight: "24px",
   },
-  Span: {
+  "span-semibold": {
     fontWeight: 600,
     fontSize: "16px",
     lineHeight: "21.79px",
+  },
+  paragraph: {
+    fontWeight: 400,
+    fontSize: "26px",
+    lineHeight: "40px",
   },
 };

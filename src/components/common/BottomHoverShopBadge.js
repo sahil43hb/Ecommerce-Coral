@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Grid,
-  IconButton,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, IconButton, Stack } from "@mui/material";
 import React from "react";
 import { palette } from "../../theme/Palette";
 import SearchIcon from "@mui/icons-material/Search";

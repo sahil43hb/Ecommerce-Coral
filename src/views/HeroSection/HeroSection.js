@@ -1,14 +1,12 @@
 import { Grid, Typography, Button, Container } from "@mui/material";
 import React from "react";
-import { palette } from "./../theme/Palette";
 import LockIcon from "@mui/icons-material/Lock";
-import HeroImg from "./../assets/images/heroImg.svg";
-import CardMedia from "../components/common/CardMedia";
-import { buttonSx } from "../utilities/contants";
+import HeroImg from "../../assets/images/heroImg.svg";
+import CardMedia from "../../components/common/CardMedia";
 
 const HeroSection = () => {
   return (
-    <Container maxwidth="md">
+    <Container maxWidth="lg">
       <Grid container sx={{ py: 8 }}>
         <Grid
           item
