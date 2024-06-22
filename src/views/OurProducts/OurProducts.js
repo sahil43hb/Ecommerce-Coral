@@ -8,15 +8,17 @@ import { Categories } from "../../utilities/data/DiscountOnInsta";
 import { getFilterProducts } from "../../utilities/common";
 import FilterModal from "../../components/model/FillterModel";
 import { palette } from "../../theme/Palette";
+import { useSelector } from "react-redux";
 
 const OurProducts = () => {
+  const pro = useSelector((state) => state.products.product);
+  // console.log(pro, "prooo");
   const [selected, setSelected] = useState("All Products");
   const [currentCategory, setCurrentCategory] = useState("products");
-  const [products, setProducts] = useState(ExploreSectionData);
+  const [products, setProducts] = useState(pro);
   const [openModel, setOpenModel] = useState(false);
   const handleOpenModel = () => setOpenModel(true);
   const handleCloseModel = () => setOpenModel(false);
-
   const tabHandleClick = (data) => {
     setSelected(data.title);
     setCurrentCategory(data.category);
@@ -37,6 +39,10 @@ const OurProducts = () => {
       setIsOverflow(sectionHeight > 1020);
     }
   }, [products]);
+  useEffect(() => {
+    setProducts(pro);
+  }, [pro]);
+
   return (
     <Container maxwidth="md" sx={{ py: 8 }}>
       <Typography variant="h2" textAlign="center">
@@ -94,19 +100,27 @@ const OurProducts = () => {
             },
           }}
         >
-          {products.map((data, index) => (
-            <ProductCard
-              key={index}
-              image={data.image}
-              isSale={data.isSale}
-              isHot={data.isHot}
-              productName={data.productName}
-              price={data.price}
-              disPrice={data.discountPrice}
-              category={data.category}
-              type={data.type}
-            />
-          ))}
+          {products &&
+            products.map((data, index) => (
+              <ProductCard
+                key={index}
+                image={data.image}
+                isSale={data.isSale}
+                isHot={data.isHot}
+                productName={data.productName}
+                price={data.price}
+                disPrice={data.discountPrice}
+                category={data.category}
+                type={data.type}
+              />
+            ))}
+          {products.length === 0 && (
+            <Grid item xs={12}>
+              <Typography variant="h2" sx={{ textAlign: "center" }}>
+                Not Data Found
+              </Typography>
+            </Grid>
+          )}
         </Grid>
       </Box>
     </Container>

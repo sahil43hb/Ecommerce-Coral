@@ -7,6 +7,8 @@ import { Button } from "@mui/material";
 import { palette } from "./../../theme/Palette";
 import { getFilterPrice } from "../../utilities/common";
 import { ExploreSectionData } from "../../utilities/data/ExploreSection";
+import { useDispatch } from "react-redux";
+import { setProducts } from "../../feature/product/productSlice";
 
 const style = {
   position: "absolute",
@@ -19,26 +21,40 @@ const style = {
   px: 4,
   py: 3,
 };
-const fillterCategory = [
-  { id: 1, title: "Pant", category: "pant", isSelected: false },
+const initialFilterCategory = [
+  { id: 1, title: "Pant", category: "pant", isSelected: true },
   { id: 2, title: "Coat", category: "coat", isSelected: true },
   { id: 3, title: "Shirt", category: "shirt", isSelected: true },
   { id: 4, title: "Jacket", category: "jacket", isSelected: true },
   { id: 5, title: "Dress", category: "dress", isSelected: true },
   { id: 6, title: "Glasses", category: "glasses", isSelected: true },
-  { id: 6, title: "Bag", category: "bag", isSelected: true },
-  { id: 6, title: "Shoe", category: "shoe", isSelected: true },
+  { id: 7, title: "Bag", category: "bag", isSelected: true },
+  { id: 8, title: "Shoe", category: "shoe", isSelected: true },
 ];
 
 export default function FilterModal({ openModel, handleCloseModel }) {
+  const dispatch = useDispatch();
+  const [filterCategory, setFilterCategory] = React.useState(
+    initialFilterCategory
+  );
   const [value, setValue] = React.useState([20, 37]);
   const handlePriceChange = (event, newValue) => {
-    console.log(newValue);
     setValue(newValue);
   };
   const handleFilterSubmit = () => {
     const data = getFilterPrice(value, ExploreSectionData);
     console.log(data);
+    dispatch(setProducts(data));
+    handleCloseModel();
+    setValue([20, 37]);
+    setFilterCategory(initialFilterCategory);
+  };
+  const handleCategoryFilter = (id) => {
+    setFilterCategory((prevCat) =>
+      prevCat.map((item) =>
+        item.id === id ? { ...item, isSelected: !item.isSelected } : item
+      )
+    );
   };
 
   return (
@@ -52,23 +68,27 @@ export default function FilterModal({ openModel, handleCloseModel }) {
         <Box sx={style}>
           <Box>
             <Box>
-              <Typography variant="h6" sx={{ pb: 2 }}>
+              <Typography variant="h5" sx={{ pb: 2 }}>
                 Price Range
               </Typography>
               <Slider
                 value={value}
                 onChange={handlePriceChange}
                 valueLabelDisplay="auto"
-                min={0}
+                min={1}
                 max={250}
+                marks={[
+                  { value: 1, label: "$1" },
+                  { value: 250, label: "$250" },
+                ]}
               />
             </Box>
             <Box sx={{ pt: 2 }}>
-              <Typography variant="h6" sx={{ pb: 1.5 }}>
+              <Typography variant="h5" sx={{ pb: 1.5 }}>
                 Category
               </Typography>
               <Box>
-                {fillterCategory.map((item, index) => (
+                {filterCategory.map((item, index) => (
                   <Button
                     key={index}
                     variant="outlined"
@@ -81,6 +101,7 @@ export default function FilterModal({ openModel, handleCloseModel }) {
                       mr: 1,
                       mb: 1,
                     }}
+                    onClick={() => handleCategoryFilter(item.id)}
                   >
                     {item.title}
                   </Button>

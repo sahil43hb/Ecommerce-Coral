@@ -22,3 +22,8 @@ code {
   font-weight: 400 !important;
   line-height: 21px !important;
 }
+.MuiSlider-markLabel {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 21px !important;
+}
