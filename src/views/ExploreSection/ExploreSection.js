@@ -62,7 +62,7 @@ const ExploreNewStyle = () => {
                   )}
                   <CardMedia image={data.image} sx={{ height: "312px" }} />
                   <BottomHoverProductsBadge
-                    category={data.category}
+                    category={data.type}
                     products={data.products}
                   />
                 </Box>

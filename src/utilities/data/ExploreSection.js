@@ -27,7 +27,7 @@ export const ExploreSectionData = [
     type: "Coat",
     products: "800",
     productName: "Nike Sportswear Futura Luxe",
-    price: "$63.85",
+    price: "$43.85",
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ export const ExploreSectionData = [
     type: "Shirt",
     products: "200",
     productName: "Geometric print Scarf",
-    price: "$63.85",
+    price: "$113.85",
   },
   {
     id: 4,
@@ -61,7 +61,7 @@ export const ExploreSectionData = [
     type: "Dress",
     products: "120",
     productName: "Basic Dress Green",
-    price: "$63.85",
+    price: "$53.85",
   },
   {
     id: 6,
@@ -72,7 +72,7 @@ export const ExploreSectionData = [
     type: "Glasses",
     products: "120",
     productName: "Nike Sportswear Futura Luxe",
-    price: "$63.85",
+    price: "$163.85",
     discountPrice: "$198.00",
   },
   {
@@ -95,6 +95,6 @@ export const ExploreSectionData = [
     type: "Shoe",
     products: "120",
     productName: "Nike Air Zoom Pegasus",
-    price: "$63.85",
+    price: "83.85",
   },
 ];

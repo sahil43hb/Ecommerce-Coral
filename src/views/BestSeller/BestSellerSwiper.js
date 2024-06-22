@@ -20,7 +20,7 @@ export default function BestSellerSwiper({ products }) {
         modules={[Navigation]}
       >
         {products.map((data, index) => (
-          <SwiperSlide>
+          <SwiperSlide key={index}>
             <ProductCard
               key={index}
               image={data.image}
@@ -30,6 +30,7 @@ export default function BestSellerSwiper({ products }) {
               price={data.price}
               disPrice={data.discountPrice}
               category={data.category}
+              type={data.type}
             />
           </SwiperSlide>
         ))}
