@@ -10,7 +10,7 @@ import { Container, Grid, Stack } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 import { headerData } from "../../utilities/data/navbar-data";
 import CardMedia from "../common/CardMedia";
-import { buttonSx, flexDisplay } from "../../utilities/Contants";
+import { buttonSx, flexDisplay } from "../../utilities/contants";
 import TextLink from "../common/TextLink";
 import Divider from "./../common/Divider";
 
