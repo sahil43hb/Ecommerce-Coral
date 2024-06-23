@@ -8,7 +8,7 @@ const initialValue = {
   product: ExploreSectionData,
   filterProducts: ExploreSectionData,
   filteredColor: initialFilterColor,
-  filteredRange: [1, 250],
+  filteredRangePrice: [1, 250],
 };
 
 export const productSlice = createSlice({
@@ -24,8 +24,8 @@ export const productSlice = createSlice({
     setFilteredColor: (state, action) => {
       state.filteredColor = action.payload;
     },
-    setFilteredRange: (state, action) => {
-      state.filteredRange = action.payload;
+    setFilteredRangePrice: (state, action) => {
+      state.filteredRangePrice = action.payload;
     },
   },
 });
@@ -33,12 +33,13 @@ export const productSlice = createSlice({
 export const getOurProducts = (state) => state.products.product;
 export const getFilterProducts = (state) => state.products.filterProducts;
 export const getFilterColor = (state) => state.products.filteredColor;
-export const getFilteredRange = (state) => state.products.filteredRange;
+export const getFilteredRangePrice = (state) =>
+  state.products.filteredRangePrice;
 
 export const {
   setOurProducts,
   setFilterProducts,
   setFilteredColor,
-  setFilteredRange,
+  setFilteredRangePrice,
 } = productSlice.actions;
 export default productSlice.reducer;

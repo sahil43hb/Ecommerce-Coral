@@ -7,20 +7,21 @@ import BestSellerSwiper from "./BestSellerSwiper";
 import { getFilterProducts } from "../../utilities/common";
 
 const BestSeller = () => {
-  const [selected, setSelected] = useState("All Products");
-  const [currentCategory, setCurrentCategory] = useState("products");
+  const [selected, setSelected] = useState({
+    type: "All Products",
+    category: "products",
+  });
   const [products, setProducts] = useState(ExploreSectionData);
   const tabsHandleClick = (data) => {
-    setSelected(data.title);
-    setCurrentCategory(data.category);
+    setSelected({ type: data.title, category: data.category });
   };
   useEffect(() => {
     const filterProducts = getFilterProducts(
-      currentCategory,
+      selected.category,
       ExploreSectionData
     );
     setProducts(filterProducts);
-  }, [currentCategory]);
+  }, [selected.category]);
 
   return (
     <Container maxwidth="md" sx={{ py: 15 }}>
@@ -36,7 +37,7 @@ const BestSeller = () => {
             <TabButton
               key={index}
               title={data.title}
-              selected={data.title === selected ? true : false}
+              selected={data.title === selected.type ? true : false}
               onClick={() => tabsHandleClick(data)}
               sx={{ mr: 3 }}
             />

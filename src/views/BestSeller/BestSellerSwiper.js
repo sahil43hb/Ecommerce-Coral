@@ -40,7 +40,7 @@ export default function BestSellerSwiper({ products }) {
       )}
       {products.length === 0 && (
         <Grid item xs={12}>
-          <Typography variant="h2" sx={{ textAlign: "center" }}>
+          <Typography variant="h3" sx={{ textAlign: "center", color: "grey" }}>
             Not Data Found
           </Typography>
         </Grid>

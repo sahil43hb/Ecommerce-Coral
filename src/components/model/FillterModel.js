@@ -10,9 +10,9 @@ import {
   getFilterProducts,
   setOurProducts,
   getFilterColor,
-  getFilteredRange,
+  getFilteredRangePrice,
   setFilteredColor,
-  setFilteredRange,
+  setFilteredRangePrice,
 } from "../../redux/feature/productSlice";
 import { palette } from "../../theme/Palette";
 
@@ -32,18 +32,18 @@ export default function FilterModal({ openModel, handleCloseModel }) {
   const dispatch = useDispatch();
   const filterProducts = useSelector(getFilterProducts);
   const filteredColor = useSelector(getFilterColor);
-  const filteredRange = useSelector(getFilteredRange);
+  const filteredRangePrice = useSelector(getFilteredRangePrice);
   const [filterColor, setFilterColor] = React.useState(filteredColor);
-  const [value, setValue] = React.useState(filteredRange);
+  const [rangePrice, setRangePrice] = React.useState(filteredRangePrice);
   const handlePriceChange = (event, newValue) => {
-    setValue(newValue);
+    setRangePrice(newValue);
   };
   const handleFilterSubmit = () => {
-    const data = getFilterPrice(value, filterProducts);
+    const data = getFilterPrice(rangePrice, filterProducts);
     const colorData = getFilteredColor(filterColor, data);
     dispatch(setOurProducts(colorData));
     dispatch(setFilteredColor(filterColor));
-    dispatch(setFilteredRange(value));
+    dispatch(setFilteredRangePrice(rangePrice));
     handleCloseModel();
   };
   const handleColorFilter = (id) => {
@@ -56,7 +56,7 @@ export default function FilterModal({ openModel, handleCloseModel }) {
   const filterCloseModel = () => {
     handleCloseModel();
     setFilterColor(filteredColor);
-    setValue(filteredRange);
+    setRangePrice(filteredRangePrice);
   };
 
   return (
@@ -73,7 +73,7 @@ export default function FilterModal({ openModel, handleCloseModel }) {
               Price Range
             </Typography>
             <Slider
-              value={value}
+              value={rangePrice}
               onChange={handlePriceChange}
               valueLabelDisplay="auto"
               min={1}

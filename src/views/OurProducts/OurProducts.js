@@ -17,8 +17,10 @@ import {
 const OurProducts = () => {
   const dispatch = useDispatch();
   const ourProducts = useSelector(getOurProducts);
-  const [selected, setSelected] = useState("All Products");
-  const [currentCategory, setCurrentCategory] = useState("products");
+  const [selected, setSelected] = useState({
+    type: "All Products",
+    category: "products",
+  });
   //Model
   const [products, setProducts] = useState(ourProducts);
   const [openModel, setOpenModel] = useState(false);
@@ -26,20 +28,19 @@ const OurProducts = () => {
   const handleCloseModel = () => setOpenModel(false);
   //Tabs
   const tabHandleClick = (data) => {
-    setSelected(data.title);
-    setCurrentCategory(data.category);
+    setSelected({ type: data.title, category: data.category });
   };
   //scroll behaviour
   const [isOverflow, setIsOverflow] = useState(false);
   const sectionRef = useRef(null);
   useEffect(() => {
     const filterProducts = getFilterProducts(
-      currentCategory,
+      selected.category,
       ExploreSectionData
     );
     setProducts(filterProducts);
     dispatch(setFilterProducts(filterProducts));
-  }, [currentCategory, dispatch]);
+  }, [selected.category, dispatch]);
   useEffect(() => {
     setProducts(ourProducts);
     if (sectionRef.current) {
@@ -62,7 +63,7 @@ const OurProducts = () => {
             <TabButton
               key={index}
               title={data.title}
-              selected={data.title === selected ? true : false}
+              selected={data.title === selected.type ? true : false}
               onClick={() => tabHandleClick(data)}
               sx={{ mr: 3 }}
             />
@@ -121,7 +122,10 @@ const OurProducts = () => {
             ))}
           {products.length === 0 && (
             <Grid item xs={12} sx={{ alignContent: "center" }}>
-              <Typography variant="h2" sx={{ textAlign: "center" }}>
+              <Typography
+                variant="h3"
+                sx={{ textAlign: "center", color: "grey" }}
+              >
                 Not Data Found
               </Typography>
             </Grid>
