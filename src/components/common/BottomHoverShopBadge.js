@@ -7,7 +7,7 @@ import LockIcon from "@mui/icons-material/Lock";
 
 const BottomHoverShopBadge = () => {
   return (
-    <div>
+    <>
       <Box
         className="hoverBadge"
         sx={{
@@ -65,7 +65,7 @@ const BottomHoverShopBadge = () => {
           </Button>
         </Grid>
       </Box>
-    </div>
+    </>
   );
 };
 

@@ -20,13 +20,6 @@ const Footer = () => {
       behavior: "smooth",
     });
   };
-  const HoverSx = {
-    display: "block",
-    "&:hover": {
-      color: palette.primary.main,
-      background: "none",
-    },
-  };
   return (
     <>
       <Container maxWidth="lg" sx={{ pt: 9, pb: 8 }}>
@@ -41,7 +34,7 @@ const Footer = () => {
             }}
           >
             <CardMedia image={logo} sx={{ width: "180px", height: "34px" }} />
-            <Box sx={{}}>
+            <Box>
               <Typography
                 variant="span-regular"
                 sx={{ color: palette.black[400] }}

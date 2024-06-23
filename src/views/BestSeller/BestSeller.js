@@ -1,7 +1,6 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import TabButton from "../../components/common/TabButton";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { ExploreSectionData } from "../../utilities/data/ExploreSection";
 import { Categories } from "../../utilities/data/DiscountOnInsta";
 import BestSellerSwiper from "./BestSellerSwiper";
@@ -22,6 +21,7 @@ const BestSeller = () => {
     );
     setProducts(filterProducts);
   }, [currentCategory]);
+
   return (
     <Container maxwidth="md" sx={{ py: 15 }}>
       <Typography variant="h2" textAlign="center">
@@ -29,7 +29,7 @@ const BestSeller = () => {
       </Typography>
       <Stack
         direction="row"
-        sx={{ justifyContent: "space-between", pt: 5, pb: 4 }}
+        sx={{ justifyContent: "space-between", pt: 5, pb: 2 }}
       >
         <Box spacing={2}>
           {Categories.map((data, index) => (
@@ -42,11 +42,10 @@ const BestSeller = () => {
             />
           ))}
         </Box>
-        {/* <Button variant="contained" size="small" startIcon={<FilterAltIcon />}>
-          Show All
-        </Button> */}
       </Stack>
-      <BestSellerSwiper products={products} />
+      <Box sx={{ height: "480px", alignContent: "center" }}>
+        <BestSellerSwiper products={products} />
+      </Box>
     </Container>
   );
 };

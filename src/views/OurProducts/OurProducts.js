@@ -8,40 +8,45 @@ import { Categories } from "../../utilities/data/DiscountOnInsta";
 import { getFilterProducts } from "../../utilities/common";
 import FilterModal from "../../components/model/FillterModel";
 import { palette } from "../../theme/Palette";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getOurProducts,
+  setFilterProducts,
+} from "../../redux/feature/productSlice";
 
 const OurProducts = () => {
-  const pro = useSelector((state) => state.products.product);
-  // console.log(pro, "prooo");
+  const dispatch = useDispatch();
+  const ourProducts = useSelector(getOurProducts);
   const [selected, setSelected] = useState("All Products");
   const [currentCategory, setCurrentCategory] = useState("products");
-  const [products, setProducts] = useState(pro);
+  //Model
+  const [products, setProducts] = useState(ourProducts);
   const [openModel, setOpenModel] = useState(false);
   const handleOpenModel = () => setOpenModel(true);
   const handleCloseModel = () => setOpenModel(false);
+  //Tabs
   const tabHandleClick = (data) => {
     setSelected(data.title);
     setCurrentCategory(data.category);
   };
+  //scroll behaviour
+  const [isOverflow, setIsOverflow] = useState(false);
+  const sectionRef = useRef(null);
   useEffect(() => {
     const filterProducts = getFilterProducts(
       currentCategory,
       ExploreSectionData
     );
     setProducts(filterProducts);
-  }, [currentCategory]);
-  //scroll behaviour
-  const [isOverflow, setIsOverflow] = useState(false);
-  const sectionRef = useRef(null);
+    dispatch(setFilterProducts(filterProducts));
+  }, [currentCategory, dispatch]);
   useEffect(() => {
+    setProducts(ourProducts);
     if (sectionRef.current) {
       const sectionHeight = sectionRef.current.scrollHeight;
       setIsOverflow(sectionHeight > 1020);
     }
-  }, [products]);
-  useEffect(() => {
-    setProducts(pro);
-  }, [pro]);
+  }, [ourProducts]);
 
   return (
     <Container maxwidth="md" sx={{ py: 8 }}>
@@ -86,7 +91,7 @@ const OurProducts = () => {
           sx={{
             height: "1020px",
             overflowY: isOverflow ? "scroll" : "hidden",
-            pr: 1,
+            pr: isOverflow ? 1 : 0,
             "&::-webkit-scrollbar": {
               "-webkit-appearance": "none",
               width: "10.26px",
@@ -115,7 +120,7 @@ const OurProducts = () => {
               />
             ))}
           {products.length === 0 && (
-            <Grid item xs={12}>
+            <Grid item xs={12} sx={{ alignContent: "center" }}>
               <Typography variant="h2" sx={{ textAlign: "center" }}>
                 Not Data Found
               </Typography>

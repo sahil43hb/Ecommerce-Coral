@@ -3,7 +3,7 @@ import Image1 from "../../assets/images/ExploreSection/Image1.svg";
 import CardMedia from "../../components/common/CardMedia";
 import { Grid, Container, Typography, Box } from "@mui/material";
 import { ExploreSectionData } from "../../utilities/data/ExploreSection";
-import { verticalText } from "../../utilities/Contants";
+import { verticalText } from "../../utilities/contants";
 import Ribbon from "../../components/common/Ribbon";
 import { palette } from "../../theme/Palette";
 import BottomHoverProductsBadge from "../../components/common/BottomHoverProductsBadge";

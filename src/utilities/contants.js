@@ -1,6 +1,5 @@
 export const buttonSx = {
   alignItems: "normal",
-  // textTransform: "none",
 };
 export const flexDisplay = {
   display: "flex",

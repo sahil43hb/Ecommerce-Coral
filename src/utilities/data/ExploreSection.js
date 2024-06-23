@@ -17,6 +17,7 @@ export const ExploreSectionData = [
     products: "1200",
     productName: "Adicolor Classics Joggers",
     price: "$63.85",
+    color: "black",
   },
   {
     id: 2,
@@ -28,6 +29,7 @@ export const ExploreSectionData = [
     products: "800",
     productName: "Nike Sportswear Futura Luxe",
     price: "$43.85",
+    color: "white",
   },
   {
     id: 3,
@@ -39,6 +41,7 @@ export const ExploreSectionData = [
     products: "200",
     productName: "Geometric print Scarf",
     price: "$113.85",
+    color: "red",
   },
   {
     id: 4,
@@ -51,6 +54,7 @@ export const ExploreSectionData = [
     productName: "Nike Repel Miler",
     price: "$63.85",
     discountPrice: "$155.00",
+    color: "black",
   },
   {
     id: 5,
@@ -62,6 +66,7 @@ export const ExploreSectionData = [
     products: "120",
     productName: "Basic Dress Green",
     price: "$53.85",
+    color: "green",
   },
   {
     id: 6,
@@ -74,6 +79,7 @@ export const ExploreSectionData = [
     productName: "Nike Sportswear Futura Luxe",
     price: "$163.85",
     discountPrice: "$198.00",
+    color: "yellow",
   },
   {
     id: 7,
@@ -85,6 +91,7 @@ export const ExploreSectionData = [
     products: "120",
     productName: "Nike Sportswear Futura Luxe",
     price: "$63.85",
+    color: "brown",
   },
   {
     id: 8,
@@ -96,5 +103,15 @@ export const ExploreSectionData = [
     products: "120",
     productName: "Nike Air Zoom Pegasus",
     price: "83.85",
+    color: "white",
   },
+];
+
+export const initialFilterColor = [
+  { id: 1, title: "Black", color: "black", isSelected: true },
+  { id: 2, title: "White", color: "white", isSelected: true },
+  { id: 3, title: "Red", color: "red", isSelected: true },
+  { id: 4, title: "Yellow", color: "yellow", isSelected: true },
+  { id: 5, title: "Green", color: "green", isSelected: true },
+  { id: 6, title: "Brown", color: "brown", isSelected: true },
 ];
