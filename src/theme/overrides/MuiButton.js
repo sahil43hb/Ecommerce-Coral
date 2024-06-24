@@ -6,7 +6,6 @@ export const MuiButton = (theme) => {
       styleOverrides: {
         root: {
           "&.MuiButton-sizeSmall": {
-            // height: "32px",
             fontWeight: 400,
             fontSize: "16px",
             lineHeight: "21.79px",
@@ -42,14 +41,15 @@ export const MuiButton = (theme) => {
           },
         },
         outlined: {
-          color: palette.white.main,
+          color: palette.dark.main,
           borderRadius: "5px",
-          border: "none",
-          background: "#627177",
+          border: "1px solid",
+          borderColor: palette.primary.main,
           "&:hover": {
-            border: "none",
-            background:
-              "linear-gradient(54deg, rgba(108,33,177,1) 16%, rgba(26,138,169,1) 100%)",
+            color: palette.white.main,
+            border: "1px solid",
+            borderColor: palette.primary.main,
+            background: palette.primary.main,
             borderRadius: "5px",
           },
         },

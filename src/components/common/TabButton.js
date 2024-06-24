@@ -13,7 +13,7 @@ const TabButton = ({ title, selected, onClick, sx }) => {
         fontWeight: 600,
         fontSize: "16px !important",
         "&:hover": {
-          color: selected ? "#000000 !important" : "#FF6F61 !important",
+          color: selected ? palette.dark.main : palette.primary.main,
         },
         ...sx,
       }}

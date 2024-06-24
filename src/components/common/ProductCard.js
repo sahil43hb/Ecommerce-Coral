@@ -12,7 +12,6 @@ const ProductCard = ({
   productName,
   price,
   disPrice,
-  category,
   type,
 }) => {
   return (

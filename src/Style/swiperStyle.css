@@ -1,21 +1,31 @@
- .swiper-button-prev {
-background-image: url(../../src/assets/images/leftArrow.svg) !important;
-background-repeat: no-repeat;
-background-size: 100% auto;
-background-position: center;
-top: var(--swiper-navigation-top-offset, 41%) !important; 
+.swiper-button-prev {
+  background-image: url(../../src/assets/images/leftArrow.svg) !important;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  top: var(--swiper-navigation-top-offset, 41%) !important;
+  background-color: #e9e9eb;
+  border-radius: 100%;
+  width: 25px !important;
+  height: 25px !important;
+  padding: 3px;
 }
 .swiper-button-next {
-background-image: url(../../src/assets/images/leftArrow.svg) !important;
-background-repeat: no-repeat;
-background-size: 100% auto;
-background-position: center;
-top: var(--swiper-navigation-top-offset, 41%) !important; 
-transform: rotate(180deg);
+  background-image: url(../../src/assets/images/leftArrow.svg) !important;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  top: var(--swiper-navigation-top-offset, 41%) !important;
+  transform: rotate(180deg);
+  background-color: #e9e9eb;
+  border-radius: 100%;
+  width: 25px !important;
+  height: 25px !important;
+  padding: 3px;
 }
 .swiper-button-next::after {
-display: none;
+  display: none;
 }
 .swiper-button-prev::after {
-display: none;
+  display: none;
 }
