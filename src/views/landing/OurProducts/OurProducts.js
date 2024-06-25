@@ -1,18 +1,18 @@
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
-import TabButton from "../../components/common/TabButton";
+import TabButton from "../../../components/common/TabButton";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { ExploreSectionData } from "../../utilities/data/ExploreSection";
-import ProductCard from "../../components/common/ProductCard";
-import { Categories } from "../../utilities/data/DiscountOnInsta";
-import { getFilterProducts } from "../../utilities/common";
-import FilterModal from "../../components/model/FillterModel";
-import { palette } from "../../theme/Palette";
+import { ExploreSectionData } from "../../../utilities/data/ExploreSection";
+import { ProductCard } from "../../../components/ProductCard";
+import { Categories } from "../../../utilities/data/DiscountOnInsta";
+import { getFilterProducts } from "../../../utilities/common";
+import FilterModal from "../../../components/model/FillterModel";
+import { palette } from "../../../theme/Palette";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getOurProducts,
   setFilterProducts,
-} from "../../redux/feature/productSlice";
+} from "../../../redux/feature/productSlice";
 
 const OurProducts = () => {
   const dispatch = useDispatch();

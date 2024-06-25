@@ -1,13 +1,13 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
-import Ribbon from "./Ribbon";
-import CardMedia from "./CardMedia";
+import Ribbon from "../common/Ribbon";
+import { CardMedia } from "../CardMedia";
 import { palette } from "../../theme/Palette";
-import BottomHoverShopBadge from "./BottomHoverShopBadge";
+import BottomHoverShopBadge from "./../common/BottomHoverShopBadge";
 
 const ProductCard = ({ productData }) => {
   if (!productData) {
-    return <Typography>Loading....</Typography>;
+    return <Typography>Loading...</Typography>;
   }
   return (
     <Grid item xs={3} sx={{ position: "relative" }}>

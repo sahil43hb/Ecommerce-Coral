@@ -11,7 +11,6 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Tooltip,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -19,23 +18,27 @@ import { palette } from "../../theme/Palette";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getFavProducts,
+  getCartProducts,
   getOurProducts,
-  setFavoriteProducts,
   setOurProducts,
+  setCartProducts,
 } from "../../redux/feature/productSlice";
-import { wishListHeader } from "../../utilities/data/wishListData";
+import { cartListHeader } from "../../utilities/data/tableHeaderListData";
 import { useNavigate } from "react-router-dom";
+import CustomTooltip from "../../components/common/CustomTooltip";
+import QuantityCounter from "./QuantityCounter";
 
 const CartSection = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const wishListData = useSelector(getFavProducts);
-  const wishListProductData = useSelector(getOurProducts);
-  const [wishlistData, setWishlistData] = useState(wishListData);
+  const cartListData = useSelector(getCartProducts);
+  const allProducts = useSelector(getOurProducts);
+  const [listData, setListData] = useState(cartListData);
   useEffect(() => {
-    setWishlistData(wishListData);
-  }, [wishListData]);
+    setListData(cartListData);
+  }, [cartListData]);
+
+  //pagination
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const handleChangePage = (event, newPage) => {
@@ -45,13 +48,25 @@ const CartSection = () => {
     setRowsPerPage(+event?.target?.value);
     setPage(0);
   };
-  const handleDeleteFav = (id) => {
-    const filterFavData = wishListData.filter((item) => item.id !== id);
-    dispatch(setFavoriteProducts(filterFavData));
-    let wishlistDataProduct = wishListProductData.map((data) =>
-      data.id === id ? { ...data, isFavorite: !data.isFavorite } : data
+  // Delete Cart Item
+  const deleteCartItem = (id) => {
+    const filterCartData = cartListData.filter((item) => item.id !== id);
+    dispatch(setCartProducts(filterCartData));
+    let allProductsData = allProducts.map((data) =>
+      data.id === id ? { ...data, isCart: !data.isCart } : data
     );
-    dispatch(setOurProducts(wishlistDataProduct));
+    dispatch(setOurProducts(allProductsData));
+  };
+  //Quantity Count
+  const [count, setCount] = useState(1);
+  const quantityInputChange = (event) => {
+    setCount(Math.max(Number(event.target.value), 1));
+  };
+  const addQuantity = () => {
+    setCount((prev) => prev + 1);
+  };
+  const subQuantity = () => {
+    setCount((prev) => prev - 1);
   };
 
   return (
@@ -66,7 +81,7 @@ const CartSection = () => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                {wishListHeader.map((column) => (
+                {cartListHeader.map((column) => (
                   <TableCell
                     key={column.id}
                     sx={{
@@ -83,7 +98,7 @@ const CartSection = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {wishlistData
+              {listData
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => (
                   <TableRow
@@ -117,11 +132,23 @@ const CartSection = () => {
                       {row.discountPrice ? row.discountPrice : row.price}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      <Tooltip title="Delete" placement="top">
-                        <IconButton onClick={() => handleDeleteFav(row.id)}>
+                      {/* {row.quantity} */}
+                      <QuantityCounter
+                        count={count}
+                        quantityInputChange={quantityInputChange}
+                        addQuantity={addQuantity}
+                        subQuantity={subQuantity}
+                      />
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {row.discountPrice ? row.discountPrice : row.price}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      <CustomTooltip title="Delete">
+                        <IconButton onClick={() => deleteCartItem(row.id)}>
                           <DeleteIcon color="error" />
                         </IconButton>
-                      </Tooltip>
+                      </CustomTooltip>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -130,7 +157,7 @@ const CartSection = () => {
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={wishlistData.length}
+            count={listData.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

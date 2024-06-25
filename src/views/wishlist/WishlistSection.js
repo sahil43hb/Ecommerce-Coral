@@ -11,7 +11,6 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Tooltip,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -24,19 +23,29 @@ import {
   setFavoriteProducts,
   setOurProducts,
 } from "../../redux/feature/productSlice";
-import { wishListHeader } from "../../utilities/data/wishListData";
+import { wishListHeader } from "../../utilities/data/tableHeaderListData";
 import { useNavigate } from "react-router-dom";
 import EastIcon from "@mui/icons-material/East";
+import CustomTooltip from "../../components/common/CustomTooltip";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import { useUpdateFavProducts } from "../../hooks/useProducts";
 
 const WishlistSection = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {
+    mutate: updateFavProducts,
+    isLoading,
+    isSuccess,
+  } = useUpdateFavProducts();
   const wishListData = useSelector(getFavProducts);
+  console.log(wishListData, "wish");
   const wishListProductData = useSelector(getOurProducts);
   const [wishlistData, setWishlistData] = useState(wishListData);
   useEffect(() => {
     setWishlistData(wishListData);
-  }, [wishListData]);
+  }, [wishListData, isSuccess]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const handleChangePage = (event, newPage) => {
@@ -53,6 +62,10 @@ const WishlistSection = () => {
       data.id === id ? { ...data, isFavorite: !data.isFavorite } : data
     );
     dispatch(setOurProducts(wishlistDataProduct));
+  };
+
+  const handleCart = (props) => {
+    updateFavProducts({ id: props.id, isCart: props.isCart });
   };
 
   return (
@@ -118,11 +131,27 @@ const WishlistSection = () => {
                       {row.discountPrice ? row.discountPrice : row.price}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      <Tooltip title="Delete" placement="top">
+                      <CustomTooltip title="Delete">
                         <IconButton onClick={() => handleDeleteFav(row.id)}>
                           <DeleteIcon color="error" />
                         </IconButton>
-                      </Tooltip>
+                      </CustomTooltip>
+                      <IconButton
+                        color="inherit"
+                        onClick={() =>
+                          handleCart({ id: row.id, isCart: row.isCart })
+                        }
+                      >
+                        {row.isCart ? (
+                          <CustomTooltip title="Remove To Cart">
+                            <RemoveShoppingCartIcon />
+                          </CustomTooltip>
+                        ) : (
+                          <CustomTooltip title="Add To Cart">
+                            <ShoppingCartIcon />
+                          </CustomTooltip>
+                        )}
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}

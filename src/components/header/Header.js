@@ -9,14 +9,17 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Container, Grid, Stack, Badge } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { headerData } from "../../utilities/data/navbar-data";
-import CardMedia from "../common/CardMedia";
+import CardMedia from "../CardMedia/CardMedia";
 import { buttonSx, flexDisplay } from "../../utilities/contants";
-import TextLink from "../common/TextLink";
-import Divider from "./../common/Divider";
+import { TextLink } from "../TextLink";
+import Divider from "../Divider/Divider";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getFavProducts } from "../../redux/feature/productSlice";
+import {
+  getCartProducts,
+  getFavProducts,
+} from "../../redux/feature/productSlice";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -31,11 +34,17 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 export default function TopAppBar({ type }) {
   const navigate = useNavigate();
   const wishListData = useSelector(getFavProducts);
+  const cartListData = useSelector(getCartProducts);
   const favProLength = wishListData.length;
+  const cartProLength = cartListData.length;
   const [wishlistProducts, setWishlistProducts] = React.useState(favProLength);
+  const [cartlistProducts, setCartlistProducts] = React.useState(cartProLength);
   React.useEffect(() => {
     setWishlistProducts(favProLength);
   }, [wishListData, favProLength]);
+  React.useEffect(() => {
+    setCartlistProducts(cartProLength);
+  }, [cartListData, cartProLength]);
 
   return (
     <Container maxWidth="lg">
@@ -83,7 +92,7 @@ export default function TopAppBar({ type }) {
                 variant="text"
                 sx={{ ...buttonSx }}
                 startIcon={
-                  <StyledBadge badgeContent={0} color="primary">
+                  <StyledBadge badgeContent={cartlistProducts} color="primary">
                     <ShoppingCartIcon />
                   </StyledBadge>
                 }

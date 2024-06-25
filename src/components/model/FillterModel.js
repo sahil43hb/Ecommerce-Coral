@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Slider from "@mui/material/Slider";
-import { Button, Grid, Tooltip } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { getFilterPrice, getFilteredColor } from "../../utilities/common";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -15,6 +15,7 @@ import {
   setFilteredRangePrice,
 } from "../../redux/feature/productSlice";
 import { palette } from "../../theme/Palette";
+import CustomTooltip from "../common/CustomTooltip";
 
 const style = {
   position: "absolute",
@@ -100,7 +101,7 @@ export default function FilterModal({ openModel, handleCloseModel }) {
               }}
             >
               {filterColor.map((item, index) => (
-                <Tooltip key={index} title={item.title} placement="top">
+                <CustomTooltip key={index} title={item.title}>
                   <Box
                     onClick={() => handleColorFilter(item.id)}
                     sx={{
@@ -122,7 +123,7 @@ export default function FilterModal({ openModel, handleCloseModel }) {
                       }}
                     ></Box>
                   </Box>
-                </Tooltip>
+                </CustomTooltip>
               ))}
             </Grid>
           </Grid>

@@ -1,12 +1,12 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Landing from "./views";
+import Landing from "./views/landing";
 import WishList from "./views/wishlist";
-import Cart from "./views/cart";
+import Cart from "./views/cartlist";
 
 function App() {
   return (
-    <div>
+    <>
       <Router>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -14,7 +14,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </Router>
-    </div>
+    </>
   );
 }
 

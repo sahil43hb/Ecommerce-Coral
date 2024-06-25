@@ -1,10 +1,10 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import TabButton from "../../components/common/TabButton";
-import { ExploreSectionData } from "../../utilities/data/ExploreSection";
-import { Categories } from "../../utilities/data/DiscountOnInsta";
+import TabButton from "../../../components/common/TabButton";
+import { ExploreSectionData } from "../../../utilities/data/ExploreSection";
+import { Categories } from "../../../utilities/data/DiscountOnInsta";
 import BestSellerSwiper from "./BestSellerSwiper";
-import { getFilterProducts } from "../../utilities/common";
+import { getFilterProducts } from "../../../utilities/common";
 
 const BestSeller = () => {
   const [selected, setSelected] = useState({

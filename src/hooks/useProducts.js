@@ -12,13 +12,13 @@ export function useUpdateFavProducts() {
   const dispatch = useDispatch();
   const getAllProducts = useSelector(getOurProducts);
   async function submit(params) {
-    console.log(params, "params");
     if (params.id === null || params.id === undefined) {
       throw new Error("ID NOT FOUND");
     }
     let filteredProducts = [];
+    let actionType = null;
+    //wishlist
     if (params.isFavorite !== null && params.isFavorite !== undefined) {
-      console.log(params.isFavorite, "params.isFavorite");
       filteredProducts = getAllProducts.map((data) =>
         data.id === params.id
           ? { ...data, isFavorite: !params.isFavorite }
@@ -28,17 +28,18 @@ export function useUpdateFavProducts() {
         (product) => product.isFavorite === true
       );
       dispatch(setFavoriteProducts(favoriteProductData));
+      actionType = "favorite";
     }
+    //cartList
     if (params.isCart !== null && params.isCart !== undefined) {
-      console.log(params.isCart, "params.isCart");
       filteredProducts = getAllProducts.map((data) =>
         data.id === params.id ? { ...data, isCart: !params.isCart } : data
       );
-
       const cartProductData = filteredProducts.filter(
         (product) => product.isCart === true
       );
       dispatch(setCartProducts(cartProductData));
+      actionType = "cart";
     }
     const productFound = filteredProducts.some(
       (product) => product.id === params.id
@@ -46,14 +47,18 @@ export function useUpdateFavProducts() {
     if (!productFound) {
       throw new Error("Product Not Found");
     }
-    return filteredProducts;
+    return { filteredProducts, actionType };
   }
 
   return useMutation({
     mutationFn: submit,
-    onSuccess: (data) => {
-      dispatch(setOurProducts(data));
-      toast.success("sUpdated Successfully!");
+    onSuccess: ({ filteredProducts, actionType }) => {
+      dispatch(setOurProducts(filteredProducts));
+      if (actionType === "favorite") {
+        toast.success("Wishlist Updated Successfully!");
+      } else if (actionType === "cart") {
+        toast.success("Cartlist Updated Successfully!");
+      }
     },
   });
 }

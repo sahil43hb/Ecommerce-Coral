@@ -20,6 +20,7 @@ export const ExploreSectionData = [
     color: "black",
     isFavorite: false,
     isCart: false,
+    quantity: 1,
   },
   {
     id: 2,
@@ -34,6 +35,7 @@ export const ExploreSectionData = [
     color: "white",
     isFavorite: false,
     isCart: false,
+    quantity: 1,
   },
   {
     id: 3,
@@ -48,6 +50,7 @@ export const ExploreSectionData = [
     color: "red",
     isFavorite: false,
     isCart: false,
+    quantity: 1,
   },
   {
     id: 4,
@@ -63,6 +66,7 @@ export const ExploreSectionData = [
     color: "black",
     isFavorite: false,
     isCart: false,
+    quantity: 1,
   },
   {
     id: 5,
@@ -77,6 +81,7 @@ export const ExploreSectionData = [
     color: "green",
     isFavorite: false,
     isCart: false,
+    quantity: 1,
   },
   {
     id: 6,
@@ -92,6 +97,7 @@ export const ExploreSectionData = [
     color: "yellow",
     isFavorite: false,
     isCart: false,
+    quantity: 1,
   },
   {
     id: 7,
@@ -106,6 +112,7 @@ export const ExploreSectionData = [
     color: "brown",
     isFavorite: false,
     isCart: false,
+    quantity: 1,
   },
   {
     id: 8,
@@ -120,6 +127,7 @@ export const ExploreSectionData = [
     color: "white",
     isFavorite: false,
     isCart: false,
+    quantity: 1,
   },
 ];
 

@@ -42,7 +42,7 @@ export const getOurProducts = (state) => state.products.product;
 export const getFilterProducts = (state) => state.products.filterProducts;
 export const getFilterColor = (state) => state.products.filteredColor;
 export const getFavProducts = (state) => state.products.favoriteProducts;
-export const getCartProducts = (state) => state.products.favoriteProducts;
+export const getCartProducts = (state) => state.products.cartProducts;
 export const getFilteredRangePrice = (state) =>
   state.products.filteredRangePrice;
 

@@ -1,6 +1,6 @@
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
-import CardMedia from "../common/CardMedia";
+import { CardMedia } from "../CardMedia";
 import logo from "../../assets/images/logo.svg";
 import { palette } from "../../theme/Palette";
 import {
@@ -11,7 +11,7 @@ import {
 } from "../../utilities/data/FooterSectionData";
 import payment from "../../assets/images/payment.svg";
 import NorthIcon from "@mui/icons-material/North";
-import FooterText from "../common/FooterText";
+import { FooterText } from "./../FooterText";
 
 const Footer = () => {
   const scrollToUP = () => {

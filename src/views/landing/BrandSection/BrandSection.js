@@ -1,7 +1,7 @@
 import { Container, Stack } from "@mui/material";
 import React from "react";
-import { ImageSectionData } from "../../utilities/data/ImageSectionData";
-import CardMedia from "../../components/common/CardMedia";
+import { ImageSectionData } from "../../../utilities/data/ImageSectionData";
+import { CardMedia } from "../../../components/CardMedia";
 
 const BrandSection = () => {
   return (
