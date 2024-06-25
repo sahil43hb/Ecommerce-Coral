@@ -15,7 +15,7 @@ const Landing = () => {
   return (
     <>
       <Grid sx={{ background: palette.black.light }}>
-        <Header />
+        <Header type="home" />
         <HeroSection />
       </Grid>
       <BrandSection />

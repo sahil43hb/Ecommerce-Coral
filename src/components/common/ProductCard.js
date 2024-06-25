@@ -5,15 +5,10 @@ import CardMedia from "./CardMedia";
 import { palette } from "../../theme/Palette";
 import BottomHoverShopBadge from "./BottomHoverShopBadge";
 
-const ProductCard = ({
-  image,
-  isSale,
-  isHot,
-  productName,
-  price,
-  disPrice,
-  type,
-}) => {
+const ProductCard = ({ productData }) => {
+  if (!productData) {
+    return <Typography>Loading....</Typography>;
+  }
   return (
     <Grid item xs={3} sx={{ position: "relative" }}>
       <Box
@@ -26,45 +21,53 @@ const ProductCard = ({
           },
         }}
       >
-        {isSale && (
+        {productData.isSale && (
           <Box sx={{ position: "absolute", top: "22px" }}>
             <Ribbon color={palette.black.main} title="Sale" />
           </Box>
         )}
-        {isHot && (
+        {productData.isHot && (
           <Box sx={{ position: "absolute", top: "22px" }}>
             <Ribbon color={palette.primary.main} title="Hot" />
           </Box>
         )}
-        <CardMedia image={image} sx={{ height: "400px" }} />
-        <BottomHoverShopBadge />
+        <CardMedia image={productData.image} sx={{ height: "400px" }} />
+        <BottomHoverShopBadge
+          isCart={productData.isCart}
+          isFav={productData.isFavorite}
+          id={productData.id}
+        />
       </Box>
       <Box sx={{ px: 1 }}>
         <Typography variant="h6" sx={{ pb: 1.5, pt: 2 }}>
-          {productName}
+          {productData.productName}
         </Typography>
         <Stack direction="row" sx={{ justifyContent: "space-between", pb: 1 }}>
           <Typography
             variant="span-regular"
             sx={{ color: "rgba(0, 0, 0, 0.5)" }}
           >
-            {type}
+            {productData.type}
           </Typography>
           <Box>
             <Typography
               variant="span-semibold"
               sx={{
-                color: disPrice ? palette.dark[300] : palette.dark.main,
-                textDecoration: disPrice ? "line-through" : "auto",
+                color: productData.discountPrice
+                  ? palette.dark[300]
+                  : palette.dark.main,
+                textDecoration: productData.discountPrice
+                  ? "line-through"
+                  : "auto",
               }}
             >
-              {price}
+              {productData.price}
             </Typography>
             <Typography
               variant="span-semibold"
               sx={{ color: palette.primary.main, pl: 1 }}
             >
-              {disPrice}
+              {productData.discountPrice}
             </Typography>
           </Box>
         </Stack>

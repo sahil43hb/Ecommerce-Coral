@@ -21,6 +21,7 @@ const OurProducts = () => {
     type: "All Products",
     category: "products",
   });
+  console.log(ourProducts, "products");
   //Model
   const [products, setProducts] = useState(ourProducts);
   const [openModel, setOpenModel] = useState(false);
@@ -48,7 +49,6 @@ const OurProducts = () => {
       setIsOverflow(sectionHeight > 1020);
     }
   }, [ourProducts]);
-
   return (
     <Container maxwidth="md" sx={{ py: 8 }}>
       <Typography variant="h2" textAlign="center">
@@ -109,15 +109,16 @@ const OurProducts = () => {
           {products &&
             products.map((data, index) => (
               <ProductCard
-                key={index}
-                image={data.image}
-                isSale={data.isSale}
-                isHot={data.isHot}
-                productName={data.productName}
-                price={data.price}
-                disPrice={data.discountPrice}
-                category={data.category}
-                type={data.type}
+                key={data.id}
+                productData={data}
+                // image={data.image}
+                // isSale={data.isSale}
+                // isHot={data.isHot}
+                // productName={data.productName}
+                // price={data.price}
+                // disPrice={data.discountPrice}
+                // category={data.category}
+                // type={data.type}
               />
             ))}
           {products.length === 0 && (

@@ -41,7 +41,7 @@ export const MuiButton = (theme) => {
           },
         },
         outlined: {
-          color: palette.dark.main,
+          color: palette.primary.main,
           borderRadius: "5px",
           border: "1px solid",
           borderColor: palette.primary.main,

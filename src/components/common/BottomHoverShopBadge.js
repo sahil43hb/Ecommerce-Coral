@@ -3,9 +3,21 @@ import React from "react";
 import { palette } from "../../theme/Palette";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import LockIcon from "@mui/icons-material/Lock";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useUpdateFavProducts } from "../../hooks/useProducts";
 
-const BottomHoverShopBadge = () => {
+const BottomHoverShopBadge = ({ isFav, id, isCart }) => {
+  const { mutate: updateFavProducts, isLoading } = useUpdateFavProducts();
+  const handleFavorite = async (props) => {
+    console.log(props);
+    updateFavProducts({ id: props.id, isFavorite: props.isFavorite });
+  };
+  const handleCart = (props) => {
+    console.log(props, "props");
+    updateFavProducts({ id: props.id, isCart: props.isCart });
+  };
+
   return (
     <>
       <Box
@@ -36,7 +48,6 @@ const BottomHoverShopBadge = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{}}
             >
               <SearchIcon />
             </IconButton>
@@ -45,14 +56,21 @@ const BottomHoverShopBadge = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{}}
+              onClick={() => handleFavorite({ id: id, isFavorite: isFav })}
             >
-              <FavoriteBorderIcon />
+              {isLoading ? (
+                <p>loading</p>
+              ) : isFav ? (
+                <FavoriteIcon sx={{ color: "#FFFF" }} />
+              ) : (
+                <FavoriteBorderIcon />
+              )}
             </IconButton>
           </Stack>
           <Button
+            onClick={() => handleCart({ id: id, isCart: isCart })}
             variant="text"
-            startIcon={<LockIcon />}
+            startIcon={<ShoppingCartIcon />}
             sx={{
               color: "#FFFFFF !important",
               "&:hover": {
@@ -61,7 +79,7 @@ const BottomHoverShopBadge = () => {
               },
             }}
           >
-            Shop Now
+            Add To Cart
           </Button>
         </Grid>
       </Box>

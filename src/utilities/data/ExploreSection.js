@@ -15,9 +15,11 @@ export const ExploreSectionData = [
     category: "pant",
     type: "Pant",
     products: "1200",
-    productName: "Adicolor Classics Joggers",
+    productName: "Acicular Classics Joggers",
     price: "$63.85",
     color: "black",
+    isFavorite: false,
+    isCart: false,
   },
   {
     id: 2,
@@ -27,9 +29,11 @@ export const ExploreSectionData = [
     category: "coat",
     type: "Coat",
     products: "800",
-    productName: "Nike Sportswear Futura Luxe",
+    productName: "Nike Sportswear Future Luxe",
     price: "$43.85",
     color: "white",
+    isFavorite: false,
+    isCart: false,
   },
   {
     id: 3,
@@ -42,6 +46,8 @@ export const ExploreSectionData = [
     productName: "Geometric print Scarf",
     price: "$113.85",
     color: "red",
+    isFavorite: false,
+    isCart: false,
   },
   {
     id: 4,
@@ -55,6 +61,8 @@ export const ExploreSectionData = [
     price: "$63.85",
     discountPrice: "$155.00",
     color: "black",
+    isFavorite: false,
+    isCart: false,
   },
   {
     id: 5,
@@ -67,6 +75,8 @@ export const ExploreSectionData = [
     productName: "Basic Dress Green",
     price: "$53.85",
     color: "green",
+    isFavorite: false,
+    isCart: false,
   },
   {
     id: 6,
@@ -80,6 +90,8 @@ export const ExploreSectionData = [
     price: "$163.85",
     discountPrice: "$198.00",
     color: "yellow",
+    isFavorite: false,
+    isCart: false,
   },
   {
     id: 7,
@@ -92,6 +104,8 @@ export const ExploreSectionData = [
     productName: "Nike Sportswear Futura Luxe",
     price: "$63.85",
     color: "brown",
+    isFavorite: false,
+    isCart: false,
   },
   {
     id: 8,
@@ -104,6 +118,8 @@ export const ExploreSectionData = [
     productName: "Nike Air Zoom Pegasus",
     price: "83.85",
     color: "white",
+    isFavorite: false,
+    isCart: false,
   },
 ];
 
