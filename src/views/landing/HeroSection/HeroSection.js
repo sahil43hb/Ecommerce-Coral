@@ -6,7 +6,7 @@ import { CardMedia } from "../../../components/CardMedia";
 
 const HeroSection = () => {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" id="heroSection">
       <Grid container sx={{ py: 8 }}>
         <Grid
           item
@@ -25,6 +25,12 @@ const HeroSection = () => {
           </Typography>
           <Grid>
             <Button
+              onClick={() =>
+                window.scrollTo({
+                  top: document.querySelector("#ourProducts").offsetTop,
+                  behavior: "smooth",
+                })
+              }
               variant="contained"
               size="large"
               startIcon={<LockIcon sx={{ fontSize: "30px !important" }} />}

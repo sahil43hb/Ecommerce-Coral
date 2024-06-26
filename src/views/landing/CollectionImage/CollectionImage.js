@@ -8,7 +8,7 @@ import { palette } from "../../../theme/Palette";
 
 const CollectionImage = () => {
   return (
-    <Grid sx={{ pt: 5 }}>
+    <Grid sx={{ pt: 5 }} id="collectionImage">
       <Box
         sx={{
           position: "relative",

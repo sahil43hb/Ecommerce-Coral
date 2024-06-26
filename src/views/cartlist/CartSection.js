@@ -27,6 +27,7 @@ import CustomTooltip from "../../components/common/CustomTooltip";
 import QuantityCounter from "./QuantityCounter";
 import { useGetProducts } from "../../hooks/useGetProduct";
 import TotalSection from "./TotalSection";
+import { notDataFoundborder } from "../../utilities/contants";
 
 const CartSection = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const CartSection = () => {
   // Delete Cart Item
   const deleteCartItem = (id) => {
     let allProductsData = allProducts.map((data) =>
-      data.id === id ? { ...data, isCart: !data.isCart } : data
+      data.id === id ? { ...data, isCart: !data.isCart, quantity: 1 } : data
     );
     dispatch(setOurProducts(allProductsData));
   };
@@ -62,99 +63,108 @@ const CartSection = () => {
         Cart
       </Typography>
       <Box sx={{ pt: 8, pb: 2 }}>
-        <TableContainer
-          sx={{ border: "2px solid", borderColor: palette.black.light }}
-        >
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-              <TableRow>
-                {cartListHeader.map((column) => (
-                  <TableCell
-                    key={column.id}
-                    sx={{
-                      py: 3,
-                      textAlign: "center",
-                      fontWeight: "bold !important",
-                    }}
-                    align={column.align}
-                    style={{ minWidth: column.minWidth }}
-                  >
-                    {column.label}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {cartlistData
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => (
-                  <TableRow
-                    key={index}
-                    sx={{ py: 3 }}
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                  >
-                    <TableCell sx={{ textAlign: "center" }}>
-                      {index + 1}
+        {cartlistData.length !== 0 ? (
+          <TableContainer sx={{ ...notDataFoundborder }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {cartListHeader.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      sx={{
+                        py: 3,
+                        textAlign: "center",
+                        fontWeight: "bold !important",
+                      }}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth }}
+                    >
+                      {column.label}
                     </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      <img
-                        alt="not"
-                        src={row.image}
-                        style={{
-                          width: "120px",
-                          height: "60px",
-                          borderRadius: 8,
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      {row.productName}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      {row.type}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      ${row.discountPrice ? row.discountPrice : row.price}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      <QuantityCounter row={row} />
-                      {/* <QuantityCounter
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {cartlistData
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => (
+                    <TableRow
+                      key={index}
+                      sx={{ py: 3 }}
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                    >
+                      <TableCell sx={{ textAlign: "center" }}>
+                        {index + 1}
+                      </TableCell>
+                      <TableCell sx={{ textAlign: "center" }}>
+                        <img
+                          alt="not"
+                          src={row.image}
+                          style={{
+                            width: "120px",
+                            height: "60px",
+                            borderRadius: 8,
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell sx={{ textAlign: "center" }}>
+                        {row.productName}
+                      </TableCell>
+                      <TableCell sx={{ textAlign: "center" }}>
+                        {row.type}
+                      </TableCell>
+                      <TableCell sx={{ textAlign: "center" }}>
+                        ${row.discountPrice ? row.discountPrice : row.price}
+                      </TableCell>
+                      <TableCell sx={{ textAlign: "center" }}>
+                        <QuantityCounter row={row} />
+                        {/* <QuantityCounter
                         count={row}
                         quantityInputChange={quantityInputChange}
                         addQuantity={addQuantity}
                         subQuantity={subQuantity}
                       /> */}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      $
-                      {(
-                        (row.discountPrice ? row.discountPrice : row.price) *
-                        row.quantity
-                      ).toFixed(2)}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      <CustomTooltip title="Delete">
-                        <IconButton onClick={() => deleteCartItem(row.id)}>
-                          <DeleteIcon color="error" />
-                        </IconButton>
-                      </CustomTooltip>
-                    </TableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
-          </Table>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={cartlistData.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </TableContainer>
+                      </TableCell>
+                      <TableCell sx={{ textAlign: "center" }}>
+                        $
+                        {(
+                          (row.discountPrice ? row.discountPrice : row.price) *
+                          row.quantity
+                        ).toFixed(2)}
+                      </TableCell>
+                      <TableCell sx={{ textAlign: "center" }}>
+                        <CustomTooltip title="Delete">
+                          <IconButton onClick={() => deleteCartItem(row.id)}>
+                            <DeleteIcon color="error" />
+                          </IconButton>
+                        </CustomTooltip>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 100]}
+              component="div"
+              count={cartlistData.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </TableContainer>
+        ) : (
+          <Box sx={{ ...notDataFoundborder, py: 8, mb: 1 }}>
+            <Typography
+              variant="h3"
+              sx={{ textAlign: "center", color: palette.black[300] }}
+            >
+              No Cart Data found
+            </Typography>
+          </Box>
+        )}
       </Box>
       <Button
         variant="outlined"

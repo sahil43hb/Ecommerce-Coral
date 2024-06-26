@@ -7,7 +7,7 @@ import InstagramProductHover from "../../../components/common/InstagramProductHo
 
 const ProductsAndDiscount = () => {
   return (
-    <Container maxWidth="lg" sx={{ pt: 14, pb: 3 }}>
+    <Container maxWidth="lg" sx={{ pt: 14, pb: 3 }} id="productsAndDiscount">
       <Typography variant="h2" sx={{ textAlign: "center" }}>
         Follow Products And Discounts On Instagram
       </Typography>

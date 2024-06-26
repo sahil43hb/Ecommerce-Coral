@@ -28,7 +28,7 @@ const BestSeller = () => {
   }, [selected.category, ourProducts]);
 
   return (
-    <Container maxwidth="md" sx={{ py: 15 }}>
+    <Container maxwidth="md" sx={{ py: 15 }} id="bestSection">
       <Typography variant="h2" textAlign="center">
         Best sellers
       </Typography>

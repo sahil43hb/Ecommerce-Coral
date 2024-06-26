@@ -21,7 +21,7 @@ const Footer = () => {
     });
   };
   return (
-    <>
+    <Box>
       <Container maxWidth="lg" sx={{ pt: 9, pb: 8 }}>
         <Grid container spacing={2}>
           <Grid
@@ -102,7 +102,7 @@ const Footer = () => {
           </Stack>
         </Container>
       </Grid>
-    </>
+    </Box>
   );
 };
 

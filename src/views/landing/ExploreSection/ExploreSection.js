@@ -11,7 +11,11 @@ import BottomHoverProductsBadge from "../../../components/common/BottomHoverProd
 const ExploreNewStyle = () => {
   const exploreData = ExploreSectionData.slice(0, 4);
   return (
-    <Container maxWidth="lg" sx={{ py: 6, maxWidth: "1372px !important" }}>
+    <Container
+      maxWidth="lg"
+      sx={{ py: 6, maxWidth: "1372px !important" }}
+      id="exploreSection"
+    >
       <Grid container spacing={1}>
         <Grid
           item

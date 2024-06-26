@@ -55,10 +55,7 @@ export default function QuantityCounter({ row }) {
   return (
     <Container>
       <ButtonGroup>
-        <StyledButton
-          onClick={() => setCount(count - 1)}
-          disabled={count.quantity <= 1}
-        >
+        <StyledButton onClick={() => setCount(count - 1)} disabled={count <= 1}>
           <RemoveIcon fontSize="small" />
         </StyledButton>
         <StyledInput
@@ -70,7 +67,7 @@ export default function QuantityCounter({ row }) {
           inputProps={{ min: 1, max: 999 }}
         />
         <StyledButton
-          disabled={count.quantity >= 999}
+          disabled={count >= 999}
           onClick={() => setCount(count + 1)}
         >
           <AddIcon fontSize="small" />

@@ -6,7 +6,6 @@ import {
 
 const initialValue = {
   product: ExploreSectionData,
-  filterProducts: ExploreSectionData,
   filteredColor: initialFilterColor,
   filteredRangePrice: [1, 250],
 };
@@ -18,10 +17,7 @@ export const productSlice = createSlice({
     setOurProducts: (state, action) => {
       state.product = action.payload;
     },
-    setFilterProducts: (state, action) => {
-      console.log(state.filterProducts, "store", action.payload);
-      state.filterProducts = action.payload;
-    },
+
     setFilteredColor: (state, action) => {
       state.filteredColor = action.payload;
     },
@@ -32,14 +28,13 @@ export const productSlice = createSlice({
 });
 
 export const getOurProducts = (state) => state.products.product;
-export const getFilterOurProducts = (state) => state.products.filterProducts;
 export const getFilterColor = (state) => state.products.filteredColor;
 export const getFilteredRangePrice = (state) =>
   state.products.filteredRangePrice;
 
 export const {
   setOurProducts,
-  setFilterProducts,
+
   setFilteredColor,
   setFilteredRangePrice,
 } = productSlice.actions;

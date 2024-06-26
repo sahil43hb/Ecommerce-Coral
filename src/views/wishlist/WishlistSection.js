@@ -29,6 +29,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import { useUpdateFavProducts } from "../../hooks/useProducts";
 import { useGetProducts } from "./../../hooks/useGetProduct";
+import { notDataFoundborder } from "../../utilities/contants";
 
 const WishlistSection = () => {
   const dispatch = useDispatch();
@@ -52,7 +53,6 @@ const WishlistSection = () => {
     );
     dispatch(setOurProducts(wishlistDataProduct));
   };
-
   const handleCart = (props) => {
     updateFavProducts({ id: props.id, isCart: props.isCart });
   };
@@ -73,99 +73,108 @@ const WishlistSection = () => {
         Wish List
       </Typography>
       <Box sx={{ pt: 8, pb: 2 }}>
-        <TableContainer
-          sx={{ border: "2px solid", borderColor: palette.black.light }}
-        >
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-              <TableRow>
-                {wishListHeader.map((column) => (
-                  <TableCell
-                    key={column.id}
-                    sx={{
-                      py: 3,
-                      textAlign: "center",
-                      fontWeight: "bold !important",
-                    }}
-                    align={column.align}
-                    style={{ minWidth: column.minWidth }}
-                  >
-                    {column.label}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {wishlistData
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => (
-                  <TableRow
-                    key={index}
-                    sx={{ py: 3 }}
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                  >
-                    <TableCell sx={{ textAlign: "center" }}>
-                      {index + 1}
+        {wishlistData.length !== 0 ? (
+          <TableContainer sx={{ ...notDataFoundborder }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {wishListHeader.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      sx={{
+                        py: 3,
+                        textAlign: "center",
+                        fontWeight: "bold !important",
+                      }}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth }}
+                    >
+                      {column.label}
                     </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      <img
-                        alt="not"
-                        src={row.image}
-                        style={{
-                          width: "120px",
-                          height: "60px",
-                          borderRadius: 8,
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      {row.productName}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      {row.type}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      ${row.discountPrice ? row.discountPrice : row.price}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      <CustomTooltip title="Delete">
-                        <IconButton onClick={() => handleDeleteFav(row.id)}>
-                          <DeleteIcon color="error" />
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {wishlistData
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => (
+                    <TableRow
+                      key={index}
+                      sx={{ py: 3 }}
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                    >
+                      <TableCell sx={{ textAlign: "center" }}>
+                        {index + 1}
+                      </TableCell>
+                      <TableCell sx={{ textAlign: "center" }}>
+                        <img
+                          alt="not"
+                          src={row.image}
+                          style={{
+                            width: "120px",
+                            height: "60px",
+                            borderRadius: 8,
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell sx={{ textAlign: "center" }}>
+                        {row.productName}
+                      </TableCell>
+                      <TableCell sx={{ textAlign: "center" }}>
+                        {row.type}
+                      </TableCell>
+                      <TableCell sx={{ textAlign: "center" }}>
+                        ${row.discountPrice ? row.discountPrice : row.price}
+                      </TableCell>
+                      <TableCell sx={{ textAlign: "center" }}>
+                        <CustomTooltip title="Delete">
+                          <IconButton onClick={() => handleDeleteFav(row.id)}>
+                            <DeleteIcon color="error" />
+                          </IconButton>
+                        </CustomTooltip>
+                        <IconButton
+                          color="inherit"
+                          onClick={() =>
+                            handleCart({ id: row.id, isCart: row.isCart })
+                          }
+                        >
+                          {row.isCart ? (
+                            <CustomTooltip title="Remove To Cart">
+                              <RemoveShoppingCartIcon />
+                            </CustomTooltip>
+                          ) : (
+                            <CustomTooltip title="Add To Cart">
+                              <ShoppingCartIcon />
+                            </CustomTooltip>
+                          )}
                         </IconButton>
-                      </CustomTooltip>
-                      <IconButton
-                        color="inherit"
-                        onClick={() =>
-                          handleCart({ id: row.id, isCart: row.isCart })
-                        }
-                      >
-                        {row.isCart ? (
-                          <CustomTooltip title="Remove To Cart">
-                            <RemoveShoppingCartIcon />
-                          </CustomTooltip>
-                        ) : (
-                          <CustomTooltip title="Add To Cart">
-                            <ShoppingCartIcon />
-                          </CustomTooltip>
-                        )}
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
-          </Table>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={wishlistData.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </TableContainer>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 100]}
+              component="div"
+              count={wishlistData.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </TableContainer>
+        ) : (
+          <Box sx={{ ...notDataFoundborder, py: 8, mb: 1 }}>
+            <Typography
+              variant="h3"
+              sx={{ textAlign: "center", color: palette.black[300] }}
+            >
+              No Wish List Data found
+            </Typography>
+          </Box>
+        )}
       </Box>
       <Stack direction="row" sx={{ justifyContent: "space-between" }}>
         <Button
