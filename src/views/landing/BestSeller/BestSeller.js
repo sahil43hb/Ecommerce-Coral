@@ -1,27 +1,31 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import TabButton from "../../../components/common/TabButton";
-import { ExploreSectionData } from "../../../utilities/data/ExploreSection";
 import { Categories } from "../../../utilities/data/DiscountOnInsta";
 import BestSellerSwiper from "./BestSellerSwiper";
-import { getFilterProducts } from "../../../utilities/common";
+import { getFilterProductsbycategory } from "../../../utilities/common";
+import { useSelector } from "react-redux";
+import { getOurProducts } from "../../../redux/feature/productSlice";
 
 const BestSeller = () => {
+  const ourProducts = useSelector(getOurProducts);
+  const [products, setProducts] = useState(ourProducts);
   const [selected, setSelected] = useState({
     type: "All Products",
     category: "products",
   });
-  const [products, setProducts] = useState(ExploreSectionData);
+  //Tabs
   const tabsHandleClick = (data) => {
     setSelected({ type: data.title, category: data.category });
   };
+  //Felter
   useEffect(() => {
-    const filterProducts = getFilterProducts(
+    const filterProducts = getFilterProductsbycategory(
       selected.category,
-      ExploreSectionData
+      ourProducts
     );
     setProducts(filterProducts);
-  }, [selected.category]);
+  }, [selected.category, ourProducts]);
 
   return (
     <Container maxwidth="md" sx={{ py: 15 }}>

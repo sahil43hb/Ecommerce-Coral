@@ -4,11 +4,8 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Slider from "@mui/material/Slider";
 import { Button, Grid } from "@mui/material";
-import { getFilterPrice, getFilteredColor } from "../../utilities/common";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getFilterProducts,
-  setOurProducts,
   getFilterColor,
   getFilteredRangePrice,
   setFilteredColor,
@@ -31,22 +28,21 @@ const style = {
 };
 export default function FilterModal({ openModel, handleCloseModel }) {
   const dispatch = useDispatch();
-  const filterProducts = useSelector(getFilterProducts);
   const filteredColor = useSelector(getFilterColor);
   const filteredRangePrice = useSelector(getFilteredRangePrice);
   const [filterColor, setFilterColor] = React.useState(filteredColor);
   const [rangePrice, setRangePrice] = React.useState(filteredRangePrice);
-  const handlePriceChange = (event, newValue) => {
-    setRangePrice(newValue);
-  };
+  //Filter Submit
   const handleFilterSubmit = () => {
-    const data = getFilterPrice(rangePrice, filterProducts);
-    const colorData = getFilteredColor(filterColor, data);
-    dispatch(setOurProducts(colorData));
     dispatch(setFilteredColor(filterColor));
     dispatch(setFilteredRangePrice(rangePrice));
     handleCloseModel();
   };
+  //Change Price Range
+  const handlePriceChange = (event, newValue) => {
+    setRangePrice(newValue);
+  };
+  //Color Filter
   const handleColorFilter = (id) => {
     setFilterColor((prevCat) =>
       prevCat.map((item) =>
@@ -54,6 +50,7 @@ export default function FilterModal({ openModel, handleCloseModel }) {
       )
     );
   };
+  //Close Model
   const filterCloseModel = () => {
     handleCloseModel();
     setFilterColor(filteredColor);

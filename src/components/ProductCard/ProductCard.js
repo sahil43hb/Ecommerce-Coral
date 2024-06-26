@@ -61,14 +61,16 @@ const ProductCard = ({ productData }) => {
                   : "auto",
               }}
             >
-              {productData.price}
+              ${productData.price}
             </Typography>
-            <Typography
-              variant="span-semibold"
-              sx={{ color: palette.primary.main, pl: 1 }}
-            >
-              {productData.discountPrice}
-            </Typography>
+            {productData.discountPrice && (
+              <Typography
+                variant="span-semibold"
+                sx={{ color: palette.primary.main, pl: 1 }}
+              >
+                ${productData.discountPrice}
+              </Typography>
+            )}
           </Box>
         </Stack>
       </Box>

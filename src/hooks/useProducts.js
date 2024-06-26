@@ -1,11 +1,6 @@
 import { useMutation } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getOurProducts,
-  setCartProducts,
-  setFavoriteProducts,
-  setOurProducts,
-} from "../redux/feature/productSlice";
+import { getOurProducts, setOurProducts } from "../redux/feature/productSlice";
 import { toast } from "react-toastify";
 
 export function useUpdateFavProducts() {
@@ -24,10 +19,6 @@ export function useUpdateFavProducts() {
           ? { ...data, isFavorite: !params.isFavorite }
           : data
       );
-      const favoriteProductData = filteredProducts.filter(
-        (product) => product.isFavorite === true
-      );
-      dispatch(setFavoriteProducts(favoriteProductData));
       actionType = "favorite";
     }
     //cartList
@@ -35,10 +26,6 @@ export function useUpdateFavProducts() {
       filteredProducts = getAllProducts.map((data) =>
         data.id === params.id ? { ...data, isCart: !params.isCart } : data
       );
-      const cartProductData = filteredProducts.filter(
-        (product) => product.isCart === true
-      );
-      dispatch(setCartProducts(cartProductData));
       actionType = "cart";
     }
     const productFound = filteredProducts.some(

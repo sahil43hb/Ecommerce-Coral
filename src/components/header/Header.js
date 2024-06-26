@@ -16,10 +16,8 @@ import Divider from "../Divider/Divider";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {
-  getCartProducts,
-  getFavProducts,
-} from "../../redux/feature/productSlice";
+import { getOurProducts } from "../../redux/feature/productSlice";
+import { getFilteredLength } from "../../utilities/common";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -33,18 +31,18 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function TopAppBar({ type }) {
   const navigate = useNavigate();
-  const wishListData = useSelector(getFavProducts);
-  const cartListData = useSelector(getCartProducts);
-  const favProLength = wishListData.length;
-  const cartProLength = cartListData.length;
-  const [wishlistProducts, setWishlistProducts] = React.useState(favProLength);
-  const [cartlistProducts, setCartlistProducts] = React.useState(cartProLength);
+  const allProducts = useSelector(getOurProducts);
+  const [listLength, setListLength] = React.useState({
+    wishlistLength: 0,
+    cartlistLength: 0,
+  });
   React.useEffect(() => {
-    setWishlistProducts(favProLength);
-  }, [wishListData, favProLength]);
-  React.useEffect(() => {
-    setCartlistProducts(cartProLength);
-  }, [cartListData, cartProLength]);
+    const { wishlistLength, cartlistLength } = getFilteredLength(allProducts);
+    setListLength({
+      wishlistLength: wishlistLength,
+      cartlistLength: cartlistLength,
+    });
+  }, [allProducts]);
 
   return (
     <Container maxWidth="lg">
@@ -65,7 +63,6 @@ export default function TopAppBar({ type }) {
                 size="large"
                 edge="start"
                 color="inherit"
-                aria-label="menu"
                 sx={{ mr: 2 }}
               >
                 <SearchIcon />
@@ -80,7 +77,10 @@ export default function TopAppBar({ type }) {
                 variant="text"
                 sx={{ ...buttonSx }}
                 startIcon={
-                  <StyledBadge badgeContent={wishlistProducts} color="primary">
+                  <StyledBadge
+                    badgeContent={listLength.wishlistLength}
+                    color="primary"
+                  >
                     <FavoriteIcon />
                   </StyledBadge>
                 }
@@ -92,7 +92,10 @@ export default function TopAppBar({ type }) {
                 variant="text"
                 sx={{ ...buttonSx }}
                 startIcon={
-                  <StyledBadge badgeContent={cartlistProducts} color="primary">
+                  <StyledBadge
+                    badgeContent={listLength.cartlistLength}
+                    color="primary"
+                  >
                     <ShoppingCartIcon />
                   </StyledBadge>
                 }

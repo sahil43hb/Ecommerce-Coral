@@ -18,9 +18,7 @@ import { palette } from "../../theme/Palette";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getFavProducts,
   getOurProducts,
-  setFavoriteProducts,
   setOurProducts,
 } from "../../redux/feature/productSlice";
 import { wishListHeader } from "../../utilities/data/tableHeaderListData";
@@ -30,34 +28,25 @@ import CustomTooltip from "../../components/common/CustomTooltip";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import { useUpdateFavProducts } from "../../hooks/useProducts";
+import { useGetProducts } from "./../../hooks/useGetProduct";
 
 const WishlistSection = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     mutate: updateFavProducts,
-    isLoading,
-    isSuccess,
+    // isLoading,
+    // isSuccess,
   } = useUpdateFavProducts();
-  const wishListData = useSelector(getFavProducts);
-  console.log(wishListData, "wish");
   const wishListProductData = useSelector(getOurProducts);
-  const [wishlistData, setWishlistData] = useState(wishListData);
+  const { data, refetch } = useGetProducts("isFavorite");
   useEffect(() => {
-    setWishlistData(wishListData);
-  }, [wishListData, isSuccess]);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event?.target?.value);
-    setPage(0);
-  };
+    refetch();
+    // eslint-disable-next-line
+  }, [wishListProductData]);
+  const wishlistData = data === undefined ? [] : data;
+  //delete Item
   const handleDeleteFav = (id) => {
-    const filterFavData = wishListData.filter((item) => item.id !== id);
-    dispatch(setFavoriteProducts(filterFavData));
     let wishlistDataProduct = wishListProductData.map((data) =>
       data.id === id ? { ...data, isFavorite: !data.isFavorite } : data
     );
@@ -66,6 +55,16 @@ const WishlistSection = () => {
 
   const handleCart = (props) => {
     updateFavProducts({ id: props.id, isCart: props.isCart });
+  };
+  //Pagination
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event?.target?.value);
+    setPage(0);
   };
 
   return (
@@ -128,7 +127,7 @@ const WishlistSection = () => {
                       {row.type}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {row.discountPrice ? row.discountPrice : row.price}
+                      ${row.discountPrice ? row.discountPrice : row.price}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
                       <CustomTooltip title="Delete">

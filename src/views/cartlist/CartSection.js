@@ -3,7 +3,6 @@ import {
   Button,
   Container,
   IconButton,
-  Stack,
   Table,
   TableBody,
   TableCell,
@@ -18,26 +17,27 @@ import { palette } from "../../theme/Palette";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getCartProducts,
   getOurProducts,
   setOurProducts,
-  setCartProducts,
 } from "../../redux/feature/productSlice";
+import EastIcon from "@mui/icons-material/East";
 import { cartListHeader } from "../../utilities/data/tableHeaderListData";
 import { useNavigate } from "react-router-dom";
 import CustomTooltip from "../../components/common/CustomTooltip";
 import QuantityCounter from "./QuantityCounter";
+import { useGetProducts } from "../../hooks/useGetProduct";
+import TotalSection from "./TotalSection";
 
 const CartSection = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cartListData = useSelector(getCartProducts);
   const allProducts = useSelector(getOurProducts);
-  const [listData, setListData] = useState(cartListData);
+  const { data, refetch } = useGetProducts("isCart");
   useEffect(() => {
-    setListData(cartListData);
-  }, [cartListData]);
-
+    refetch();
+    // eslint-disable-next-line
+  }, [allProducts]);
+  const cartlistData = data === undefined ? [] : data;
   //pagination
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -50,23 +50,10 @@ const CartSection = () => {
   };
   // Delete Cart Item
   const deleteCartItem = (id) => {
-    const filterCartData = cartListData.filter((item) => item.id !== id);
-    dispatch(setCartProducts(filterCartData));
     let allProductsData = allProducts.map((data) =>
       data.id === id ? { ...data, isCart: !data.isCart } : data
     );
     dispatch(setOurProducts(allProductsData));
-  };
-  //Quantity Count
-  const [count, setCount] = useState(1);
-  const quantityInputChange = (event) => {
-    setCount(Math.max(Number(event.target.value), 1));
-  };
-  const addQuantity = () => {
-    setCount((prev) => prev + 1);
-  };
-  const subQuantity = () => {
-    setCount((prev) => prev - 1);
   };
 
   return (
@@ -98,7 +85,7 @@ const CartSection = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {listData
+              {cartlistData
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => (
                   <TableRow
@@ -129,19 +116,23 @@ const CartSection = () => {
                       {row.type}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {row.discountPrice ? row.discountPrice : row.price}
+                      ${row.discountPrice ? row.discountPrice : row.price}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {/* {row.quantity} */}
-                      <QuantityCounter
-                        count={count}
+                      <QuantityCounter row={row} />
+                      {/* <QuantityCounter
+                        count={row}
                         quantityInputChange={quantityInputChange}
                         addQuantity={addQuantity}
                         subQuantity={subQuantity}
-                      />
+                      /> */}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {row.discountPrice ? row.discountPrice : row.price}
+                      $
+                      {(
+                        (row.discountPrice ? row.discountPrice : row.price) *
+                        row.quantity
+                      ).toFixed(2)}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
                       <CustomTooltip title="Delete">
@@ -157,7 +148,7 @@ const CartSection = () => {
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={listData.length}
+            count={cartlistData.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
@@ -165,11 +156,14 @@ const CartSection = () => {
           />
         </TableContainer>
       </Box>
-      <Stack direction="row">
-        <Button variant="outlined" onClick={() => navigate("/")}>
-          Back
-        </Button>
-      </Stack>
+      <Button
+        variant="outlined"
+        onClick={() => navigate("/")}
+        startIcon={<EastIcon sx={{ transform: "rotate(180deg)" }} />}
+      >
+        Back
+      </Button>
+      <TotalSection cartlistData={cartlistData} />
     </Container>
   );
 };
