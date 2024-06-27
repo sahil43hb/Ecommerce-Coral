@@ -3,14 +3,7 @@ import React from "react";
 
 const CustomSkelton = ({ width, height, sx }) => {
   return (
-    <Box>
-      <Skeleton
-        variant="rounded"
-        width={width}
-        height={height}
-        sx={{ ...sx }}
-      />
-    </Box>
+    <Skeleton variant="rounded" width={width} height={height} sx={{ ...sx }} />
   );
 };
 

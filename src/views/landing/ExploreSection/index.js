@@ -1,14 +1,9 @@
-import { Container } from "@mui/material";
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import { Box, Container } from "@mui/material";
+import React, { Suspense, lazy } from "react";
 import ExploreSectionSkelton from "./ExploreSectionSkelton";
 const ExploreSection = lazy(() => import("./ExploreSection"));
 
 const ExploreNewStyle = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
   return (
     <Container
       maxWidth="lg"
@@ -16,9 +11,9 @@ const ExploreNewStyle = () => {
       id="exploreSection"
     >
       <Suspense fallback={<ExploreSectionSkelton />}>
-        <div className={isLoaded ? "fade-in" : ""}>
+        <Box className="fade-in">
           <ExploreSection />
-        </div>
+        </Box>
       </Suspense>
     </Container>
   );
