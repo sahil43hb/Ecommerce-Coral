@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import TabButton from "../../../components/common/TabButton";
 import { Categories } from "../../../utilities/data/DiscountOnInsta";
 import BestSellerSwiper from "./BestSellerSwiper";
-import { getFilterProductsbycategory } from "../../../utilities/common";
+import { getFilteredProductsByCategory } from "../../../utilities/common";
 import { useSelector } from "react-redux";
 import { getOurProducts } from "../../../redux/feature/productSlice";
 
@@ -20,7 +20,7 @@ const BestSeller = () => {
   };
   //Felter
   useEffect(() => {
-    const filterProducts = getFilterProductsbycategory(
+    const filterProducts = getFilteredProductsByCategory(
       selected.category,
       ourProducts
     );

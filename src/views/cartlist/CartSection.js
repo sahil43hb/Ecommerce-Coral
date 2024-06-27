@@ -34,11 +34,6 @@ const CartSection = () => {
   const navigate = useNavigate();
   const allProducts = useSelector(getOurProducts);
   const { data, refetch } = useGetProducts("isCart");
-  useEffect(() => {
-    refetch();
-    // eslint-disable-next-line
-  }, [allProducts]);
-  const cartlistData = data === undefined ? [] : data;
   //pagination
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -56,6 +51,12 @@ const CartSection = () => {
     );
     dispatch(setOurProducts(allProductsData));
   };
+  //Refetch Data
+  useEffect(() => {
+    refetch();
+    // eslint-disable-next-line
+  }, [allProducts]);
+  const cartlistData = data === undefined ? [] : data;
 
   return (
     <Container maxWidth="lg" sx={{ pt: 12 }}>
@@ -120,12 +121,6 @@ const CartSection = () => {
                       </TableCell>
                       <TableCell sx={{ textAlign: "center" }}>
                         <QuantityCounter row={row} />
-                        {/* <QuantityCounter
-                        count={row}
-                        quantityInputChange={quantityInputChange}
-                        addQuantity={addQuantity}
-                        subQuantity={subQuantity}
-                      /> */}
                       </TableCell>
                       <TableCell sx={{ textAlign: "center" }}>
                         $

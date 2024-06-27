@@ -12,7 +12,6 @@ import CustomTooltip from "./CustomTooltip";
 const BottomHoverShopBadge = ({ isFav, id, isCart }) => {
   const { mutate: updateFavProducts, isLoading } = useUpdateFavProducts();
   const handleFavorite = async (props) => {
-    console.log(props);
     updateFavProducts({ id: props.id, isFavorite: props.isFavorite });
   };
   const handleCart = (props) => {
@@ -52,7 +51,7 @@ const BottomHoverShopBadge = ({ isFav, id, isCart }) => {
               {isLoading ? (
                 <p>loading</p>
               ) : isFav ? (
-                <CustomTooltip title="Remove To Wishlist">
+                <CustomTooltip title="Remove From Wishlist">
                   <FavoriteIcon sx={{ color: "#FFFF" }} />
                 </CustomTooltip>
               ) : (
@@ -68,7 +67,7 @@ const BottomHoverShopBadge = ({ isFav, id, isCart }) => {
               {isLoading ? (
                 <p>loading</p>
               ) : isCart ? (
-                <CustomTooltip title="Remove To Cart">
+                <CustomTooltip title="Remove From Cart">
                   <RemoveShoppingCartIcon sx={{ color: "#FFFF" }} />
                 </CustomTooltip>
               ) : (

@@ -41,11 +41,6 @@ const WishlistSection = () => {
   } = useUpdateFavProducts();
   const wishListProductData = useSelector(getOurProducts);
   const { data, refetch } = useGetProducts("isFavorite");
-  useEffect(() => {
-    refetch();
-    // eslint-disable-next-line
-  }, [wishListProductData]);
-  const wishlistData = data === undefined ? [] : data;
   //delete Item
   const handleDeleteFav = (id) => {
     let wishlistDataProduct = wishListProductData.map((data) =>
@@ -66,7 +61,12 @@ const WishlistSection = () => {
     setRowsPerPage(+event?.target?.value);
     setPage(0);
   };
-
+  // Refetch Data
+  useEffect(() => {
+    refetch();
+    // eslint-disable-next-line
+  }, [wishListProductData]);
+  const wishlistData = data === undefined ? [] : data;
   return (
     <Container maxWidth="lg" sx={{ pt: 12 }}>
       <Typography variant="h2" textAlign="center">
@@ -141,7 +141,7 @@ const WishlistSection = () => {
                           }
                         >
                           {row.isCart ? (
-                            <CustomTooltip title="Remove To Cart">
+                            <CustomTooltip title="Remove From Cart">
                               <RemoveShoppingCartIcon />
                             </CustomTooltip>
                           ) : (

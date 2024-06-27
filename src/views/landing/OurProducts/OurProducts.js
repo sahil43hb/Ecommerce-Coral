@@ -22,7 +22,7 @@ const OurProducts = () => {
     type: "All Products",
     category: "products",
   });
-  console.log(ourProducts, "products");
+  console.log(ourProducts, "Products");
   //Model
   const [products, setProducts] = useState(ourProducts);
   const [openModel, setOpenModel] = useState(false);

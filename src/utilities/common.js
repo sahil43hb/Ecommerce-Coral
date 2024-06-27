@@ -1,5 +1,5 @@
 // Filter Through Tabs
-export const getFilterProductsbycategory = (category, allProducts) => {
+export const getFilteredProductsByCategory = (category, allProducts) => {
   if (category && category === "products") {
     return allProducts;
   } else {
@@ -10,7 +10,7 @@ export const getFilterProductsbycategory = (category, allProducts) => {
   }
 };
 // Filter Through Price Range
-export const getFilterPrice = (value, allProducts) => {
+export const getFilteredProductsByPrice = (value, allProducts) => {
   const [minPrice, maxPrice] = value;
   const filterData = allProducts?.filter((product) => {
     const price = parseFloat(product.price);
@@ -24,7 +24,7 @@ export const getFilterPrice = (value, allProducts) => {
   return filterData;
 };
 // Filter Through Colors
-export const getFilteredColor = (colorData, products) => {
+export const getFilteredProductsByColor = (colorData, products) => {
   const filteredColors = colorData
     ?.filter((item) => item.isSelected === true)
     .map((data) => data.color);
@@ -54,7 +54,6 @@ export const calculateAmount = (cartData) => {
       (total +=
         (data.discountPrice ? data.discountPrice : data.price) * data.quantity)
   );
-  console.log(total, "da");
   return total;
 };
 
@@ -64,12 +63,15 @@ export const getFilteredAllProducts = (
   category,
   allProducts
 ) => {
-  const FilterProductsbycategory = getFilterProductsbycategory(
+  const FilterProductsbycategory = getFilteredProductsByCategory(
     category,
     allProducts
   );
-  const filteredProductsPrice = getFilterPrice(range, FilterProductsbycategory);
-  const filterProductsColor = getFilteredColor(
+  const filteredProductsPrice = getFilteredProductsByPrice(
+    range,
+    FilterProductsbycategory
+  );
+  const filterProductsColor = getFilteredProductsByColor(
     colorData,
     filteredProductsPrice
   );

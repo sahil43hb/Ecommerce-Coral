@@ -68,7 +68,7 @@ export default function TopAppBar({ type }) {
                 <SearchIcon />
               </IconButton>
             </Box>
-            <Box onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
+            <Box onClick={() => navigate("/")} className="cursor">
               <CardMedia sx={{ height: "34px", width: "180px" }} image={logo} />
             </Box>
             <Stack direction="row" spacing={2}>

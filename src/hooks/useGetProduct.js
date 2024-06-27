@@ -10,7 +10,6 @@ export function useGetProducts(type) {
         ? product.isFavorite === true
         : product.isCart === true
     );
-    console.log(favoriteProductData, "pr");
     if (
       favoriteProductData &&
       favoriteProductData !== null &&

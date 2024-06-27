@@ -7,7 +7,14 @@ import BottomHoverShopBadge from "./../common/BottomHoverShopBadge";
 
 const ProductCard = ({ productData }) => {
   if (!productData) {
-    return <Typography>Loading...</Typography>;
+    return (
+      <Typography
+        variant="h4"
+        sx={{ textAlign: "center", color: palette.black[300] }}
+      >
+        Loading...
+      </Typography>
+    );
   }
   return (
     <Grid item xs={3} sx={{ position: "relative" }}>

@@ -33,3 +33,6 @@ code {
 .MuiTablePagination-menuItem {
   font-size: 16px !important;
 }
+.cursor {
+  cursor: pointer;
+}
