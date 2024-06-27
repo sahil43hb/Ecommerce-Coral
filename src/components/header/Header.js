@@ -21,8 +21,8 @@ import { getFilteredLength } from "../../utilities/common";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
-    right: -3,
-    top: 13,
+    right: 3,
+    top: 15,
     border: `2px solid ${theme.palette.background.paper}`,
     padding: "0 4px",
     color: "#FFFF",
@@ -58,7 +58,7 @@ export default function TopAppBar({ type }) {
               pt: 1,
             }}
           >
-            <Box>
+            <Box sx={{ width: "165px" }}>
               <IconButton
                 size="large"
                 edge="start"
@@ -81,11 +81,11 @@ export default function TopAppBar({ type }) {
                     badgeContent={listLength.wishlistLength}
                     color="primary"
                   >
-                    <FavoriteIcon />
+                    <FavoriteIcon className="icons" />
                   </StyledBadge>
                 }
               >
-                <Box sx={{ pl: 0.7 }}>Wishlist</Box>
+                <Box>Wishlist</Box>
               </Button>
               <Button
                 onClick={() => navigate("/cart")}
@@ -96,11 +96,11 @@ export default function TopAppBar({ type }) {
                     badgeContent={listLength.cartlistLength}
                     color="primary"
                   >
-                    <ShoppingCartIcon />
+                    <ShoppingCartIcon className="icons" />
                   </StyledBadge>
                 }
               >
-                <Box sx={{ pl: 0.7 }}>Cart</Box>
+                <Box>Cart</Box>
               </Button>
             </Stack>
           </Grid>

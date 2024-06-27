@@ -13,7 +13,12 @@ const FooterText = ({ array }) => {
   return (
     <Box sx={{ pt: 1.8 }}>
       {array.map((data) => (
-        <Typography variant="a2-regular" key={data.id} sx={{ ...HoverSx }}>
+        <Typography
+          variant="a2-regular"
+          key={data.id}
+          sx={{ ...HoverSx }}
+          className="cursor"
+        >
           {data.name}
         </Typography>
       ))}

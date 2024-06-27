@@ -1,8 +1,8 @@
 import { Grid, Typography, Button, Container } from "@mui/material";
 import React from "react";
-import LockIcon from "@mui/icons-material/Lock";
 import HeroImg from "../../../assets/images/heroImg.svg";
 import { CardMedia } from "../../../components/CardMedia";
+import Lock from "../../../assets/images/Lock.svg";
 
 const HeroSection = () => {
   return (
@@ -33,7 +33,13 @@ const HeroSection = () => {
               }
               variant="contained"
               size="large"
-              startIcon={<LockIcon sx={{ fontSize: "30px !important" }} />}
+              startIcon={
+                <img
+                  alt="not"
+                  src={Lock}
+                  style={{ height: "30px", width: "30px" }}
+                />
+              }
             >
               Shop Now
             </Button>

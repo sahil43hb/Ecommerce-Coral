@@ -33,7 +33,9 @@ const Footer = () => {
               flexDirection: "column",
             }}
           >
-            <CardMedia image={logo} sx={{ width: "180px", height: "34px" }} />
+            <Box className="cursor">
+              <CardMedia image={logo} sx={{ width: "180px", height: "34px" }} />
+            </Box>
             <Box>
               <Typography
                 variant="span-regular"
@@ -51,7 +53,7 @@ const Footer = () => {
                 <CardMedia
                   key={index}
                   image={data.img}
-                  sx={{ height: "25px", width: "25px" }}
+                  sx={{ height: "25px", width: "25px", cursor: "pointer" }}
                 />
               ))}
             </Stack>

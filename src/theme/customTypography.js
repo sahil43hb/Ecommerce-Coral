@@ -9,6 +9,8 @@ export const customTypography = {
     fontWeight: 600,
     fontSize: "12px",
     lineHeight: "16.34px",
+    fontFamily: "Roboto",
+    letterSpacing: "1px",
   },
   "span-regular": {
     fontWeight: 400,

@@ -36,3 +36,22 @@ code {
 .cursor {
   cursor: pointer;
 }
+.icons {
+  width: 25px !important;
+  height: 25px !important;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* Create a CSS class that uses the fadeIn animation */
+.fade-in {
+  animation: fadeIn 2s ease-in-out;
+}

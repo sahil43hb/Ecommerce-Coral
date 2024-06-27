@@ -15,7 +15,7 @@ export const ExploreSectionData = [
     category: "pant",
     type: "Pant",
     products: "1200",
-    productName: "Acicular Classics Joggers",
+    productName: "Acicular Classics",
     price: 63.85,
     color: "black",
     isFavorite: false,
