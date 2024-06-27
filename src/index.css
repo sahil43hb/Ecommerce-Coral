@@ -27,3 +27,12 @@ code {
   font-weight: 400 !important;
   line-height: 21px !important;
 }
+.MuiTableCell-root,
+.MuiTablePagination-displayedRows,
+.MuiTablePagination-selectLabel,
+.MuiTablePagination-menuItem {
+  font-size: 16px !important;
+}
+.cursor {
+  cursor: pointer;
+}

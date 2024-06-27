@@ -1,26 +1,28 @@
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
-import TabButton from "../../components/common/TabButton";
+import TabButton from "../../../components/common/TabButton";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { ExploreSectionData } from "../../utilities/data/ExploreSection";
-import ProductCard from "../../components/common/ProductCard";
-import { Categories } from "../../utilities/data/DiscountOnInsta";
-import { getFilterProducts } from "../../utilities/common";
-import FilterModal from "../../components/model/FillterModel";
-import { palette } from "../../theme/Palette";
-import { useDispatch, useSelector } from "react-redux";
+import { ProductCard } from "../../../components/ProductCard";
+import { Categories } from "../../../utilities/data/DiscountOnInsta";
+import { getFilteredAllProducts } from "../../../utilities/common";
+import FilterModal from "../../../components/model/FillterModel";
+import { palette } from "../../../theme/Palette";
+import { useSelector } from "react-redux";
 import {
+  getFilterColor,
+  getFilteredRangePrice,
   getOurProducts,
-  setFilterProducts,
-} from "../../redux/feature/productSlice";
+} from "../../../redux/feature/productSlice";
 
 const OurProducts = () => {
-  const dispatch = useDispatch();
   const ourProducts = useSelector(getOurProducts);
+  const filteredColor = useSelector(getFilterColor);
+  const filteredRangePrice = useSelector(getFilteredRangePrice);
   const [selected, setSelected] = useState({
     type: "All Products",
     category: "products",
   });
+  console.log(ourProducts, "Products");
   //Model
   const [products, setProducts] = useState(ourProducts);
   const [openModel, setOpenModel] = useState(false);
@@ -30,19 +32,20 @@ const OurProducts = () => {
   const tabHandleClick = (data) => {
     setSelected({ type: data.title, category: data.category });
   };
+  //Filter Data
+  useEffect(() => {
+    const allFilterProducts = getFilteredAllProducts(
+      filteredRangePrice,
+      filteredColor,
+      selected.category,
+      ourProducts
+    );
+    setProducts(allFilterProducts);
+  }, [filteredRangePrice, ourProducts, selected.category, filteredColor]);
   //scroll behaviour
   const [isOverflow, setIsOverflow] = useState(false);
   const sectionRef = useRef(null);
   useEffect(() => {
-    const filterProducts = getFilterProducts(
-      selected.category,
-      ExploreSectionData
-    );
-    setProducts(filterProducts);
-    dispatch(setFilterProducts(filterProducts));
-  }, [selected.category, dispatch]);
-  useEffect(() => {
-    setProducts(ourProducts);
     if (sectionRef.current) {
       const sectionHeight = sectionRef.current.scrollHeight;
       setIsOverflow(sectionHeight > 1020);
@@ -50,7 +53,7 @@ const OurProducts = () => {
   }, [ourProducts]);
 
   return (
-    <Container maxwidth="md" sx={{ py: 8 }}>
+    <Container maxwidth="md" sx={{ py: 8 }} id="ourProducts">
       <Typography variant="h2" textAlign="center">
         Our Products
       </Typography>
@@ -108,17 +111,7 @@ const OurProducts = () => {
         >
           {products &&
             products.map((data, index) => (
-              <ProductCard
-                key={index}
-                image={data.image}
-                isSale={data.isSale}
-                isHot={data.isHot}
-                productName={data.productName}
-                price={data.price}
-                disPrice={data.discountPrice}
-                category={data.category}
-                type={data.type}
-              />
+              <ProductCard key={data.id} productData={data} />
             ))}
           {products.length === 0 && (
             <Grid item xs={12} sx={{ alignContent: "center" }}>

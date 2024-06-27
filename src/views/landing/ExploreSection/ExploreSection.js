@@ -1,17 +1,21 @@
 import React from "react";
-import Image1 from "../../assets/images/ExploreSection/Image1.svg";
-import CardMedia from "../../components/common/CardMedia";
+import Image1 from "../../../assets/images/ExploreSection/Image1.svg";
+import { CardMedia } from "../../../components/CardMedia";
 import { Grid, Container, Typography, Box } from "@mui/material";
-import { ExploreSectionData } from "../../utilities/data/ExploreSection";
-import { verticalText } from "../../utilities/contants";
-import Ribbon from "../../components/common/Ribbon";
-import { palette } from "../../theme/Palette";
-import BottomHoverProductsBadge from "../../components/common/BottomHoverProductsBadge";
+import { ExploreSectionData } from "../../../utilities/data/ExploreSection";
+import { verticalText } from "../../../utilities/contants";
+import Ribbon from "../../../components/common/Ribbon";
+import { palette } from "../../../theme/Palette";
+import BottomHoverProductsBadge from "../../../components/common/BottomHoverProductsBadge";
 
 const ExploreNewStyle = () => {
   const exploreData = ExploreSectionData.slice(0, 4);
   return (
-    <Container maxWidth="lg" sx={{ py: 6, maxWidth: "1372px !important" }}>
+    <Container
+      maxWidth="lg"
+      sx={{ py: 6, maxWidth: "1372px !important" }}
+      id="exploreSection"
+    >
       <Grid container spacing={1}>
         <Grid
           item

@@ -3,18 +3,16 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Slider from "@mui/material/Slider";
-import { Button, Grid, Tooltip } from "@mui/material";
-import { getFilterPrice, getFilteredColor } from "../../utilities/common";
+import { Button, Grid } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getFilterProducts,
-  setOurProducts,
   getFilterColor,
   getFilteredRangePrice,
   setFilteredColor,
   setFilteredRangePrice,
 } from "../../redux/feature/productSlice";
 import { palette } from "../../theme/Palette";
+import CustomTooltip from "../common/CustomTooltip";
 
 const style = {
   position: "absolute",
@@ -30,22 +28,21 @@ const style = {
 };
 export default function FilterModal({ openModel, handleCloseModel }) {
   const dispatch = useDispatch();
-  const filterProducts = useSelector(getFilterProducts);
   const filteredColor = useSelector(getFilterColor);
   const filteredRangePrice = useSelector(getFilteredRangePrice);
   const [filterColor, setFilterColor] = React.useState(filteredColor);
   const [rangePrice, setRangePrice] = React.useState(filteredRangePrice);
-  const handlePriceChange = (event, newValue) => {
-    setRangePrice(newValue);
-  };
+  //Filter Submit
   const handleFilterSubmit = () => {
-    const data = getFilterPrice(rangePrice, filterProducts);
-    const colorData = getFilteredColor(filterColor, data);
-    dispatch(setOurProducts(colorData));
     dispatch(setFilteredColor(filterColor));
     dispatch(setFilteredRangePrice(rangePrice));
     handleCloseModel();
   };
+  //Change Price Range
+  const handlePriceChange = (event, newValue) => {
+    setRangePrice(newValue);
+  };
+  //Color Filter
   const handleColorFilter = (id) => {
     setFilterColor((prevCat) =>
       prevCat.map((item) =>
@@ -53,6 +50,7 @@ export default function FilterModal({ openModel, handleCloseModel }) {
       )
     );
   };
+  //Close Model
   const filterCloseModel = () => {
     handleCloseModel();
     setFilterColor(filteredColor);
@@ -100,7 +98,7 @@ export default function FilterModal({ openModel, handleCloseModel }) {
               }}
             >
               {filterColor.map((item, index) => (
-                <Tooltip key={index} title={item.title} placement="top">
+                <CustomTooltip key={index} title={item.title}>
                   <Box
                     onClick={() => handleColorFilter(item.id)}
                     sx={{
@@ -122,7 +120,7 @@ export default function FilterModal({ openModel, handleCloseModel }) {
                       }}
                     ></Box>
                   </Box>
-                </Tooltip>
+                </CustomTooltip>
               ))}
             </Grid>
           </Grid>

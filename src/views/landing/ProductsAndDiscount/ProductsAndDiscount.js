@@ -1,13 +1,13 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import React from "react";
-import { DiscountOnInstagram } from "./../../utilities/data/DiscountOnInsta";
-import CardMedia from "../../components/common/CardMedia";
-import EmailSubmit from "../../components/common/EmailSubmit";
-import InstagramProductHover from "./../../components/common/InstagramProductHover";
+import { DiscountOnInstagram } from "../../../utilities/data/DiscountOnInsta";
+import { CardMedia } from "../../../components/CardMedia";
+import { EmailSubmit } from "../../../components/EmailSubmit";
+import InstagramProductHover from "../../../components/common/InstagramProductHover";
 
 const ProductsAndDiscount = () => {
   return (
-    <Container maxWidth="lg" sx={{ pt: 14, pb: 3 }}>
+    <Container maxWidth="lg" sx={{ pt: 14, pb: 3 }} id="productsAndDiscount">
       <Typography variant="h2" sx={{ textAlign: "center" }}>
         Follow Products And Discounts On Instagram
       </Typography>

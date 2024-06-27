@@ -1,14 +1,14 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
-import Image from "../../assets/images/CollectionImage.svg";
-import ZaraImage from "../../assets/images/Zara.svg";
-import ZaraSmallImage from "../../assets/images/ZaraSmall.svg";
-import CardMedia from "../../components/common/CardMedia";
-import { palette } from "../../theme/Palette";
+import Image from "../../../assets/images/CollectionImage.svg";
+import ZaraImage from "../../../assets/images/Zara.svg";
+import ZaraSmallImage from "../../../assets/images/ZaraSmall.svg";
+import { CardMedia } from "../../../components/CardMedia";
+import { palette } from "../../../theme/Palette";
 
 const CollectionImage = () => {
   return (
-    <Grid sx={{ pt: 5 }}>
+    <Grid sx={{ pt: 5 }} id="collectionImage">
       <Box
         sx={{
           position: "relative",

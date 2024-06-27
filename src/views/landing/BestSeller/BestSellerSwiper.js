@@ -1,8 +1,8 @@
 import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import "../../Style/swiperStyle.css";
-import ProductCard from "../../components/common/ProductCard";
+import "../../../Style/swiperStyle.css";
+import { ProductCard } from "../../../components/ProductCard";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -23,17 +23,7 @@ export default function BestSellerSwiper({ products }) {
         >
           {products.map((data, index) => (
             <SwiperSlide key={index}>
-              <ProductCard
-                key={index}
-                image={data.image}
-                isSale={data.isSale}
-                isHot={data.isHot}
-                productName={data.productName}
-                price={data.price}
-                disPrice={data.discountPrice}
-                category={data.category}
-                type={data.type}
-              />
+              <ProductCard key={index} productData={data} />
             </SwiperSlide>
           ))}
         </Swiper>
