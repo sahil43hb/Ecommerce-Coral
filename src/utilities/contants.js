@@ -1,7 +1,7 @@
 import { palette } from "../theme/Palette";
 
 export const buttonSx = {
-  alignItems: "normal",
+  alignItems: "end",
 };
 export const flexDisplay = {
   display: "flex",

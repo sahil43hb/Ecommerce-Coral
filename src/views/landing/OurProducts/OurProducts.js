@@ -1,8 +1,7 @@
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
 import TabButton from "../../../components/common/TabButton";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { ProductCard } from "../../../components/ProductCard";
 import { Categories } from "../../../utilities/data/DiscountOnInsta";
 import { getFilteredAllProducts } from "../../../utilities/common";
 import FilterModal from "../../../components/model/FillterModel";
@@ -13,8 +12,14 @@ import {
   getFilteredRangePrice,
   getOurProducts,
 } from "../../../redux/feature/productSlice";
+import OurProductSkelton from "../../../components/common/ProductCardSkelton";
+const ShowProductData = lazy(() =>
+  import("../../../components/ProductCard").then((module) => ({
+    default: module.ShowProductData,
+  }))
+);
 
-const OurProducts = () => {
+const OurProduct = () => {
   const ourProducts = useSelector(getOurProducts);
   const filteredColor = useSelector(getFilterColor);
   const filteredRangePrice = useSelector(getFilteredRangePrice);
@@ -53,7 +58,7 @@ const OurProducts = () => {
   }, [ourProducts]);
 
   return (
-    <Container maxwidth="md" sx={{ py: 8 }} id="ourProducts">
+    <>
       <Typography variant="h2" textAlign="center">
         Our Products
       </Typography>
@@ -76,7 +81,7 @@ const OurProducts = () => {
           <Button
             variant="contained"
             size="small"
-            startIcon={<FilterAltIcon />}
+            startIcon={<FilterAltIcon sx={{ fontSize: "20px !important" }} />}
             onClick={handleOpenModel}
           >
             Filter
@@ -109,10 +114,10 @@ const OurProducts = () => {
             },
           }}
         >
-          {products &&
-            products.map((data, index) => (
-              <ProductCard key={data.id} productData={data} />
-            ))}
+          <Suspense fallback={<OurProductSkelton length={8} />}>
+            <ShowProductData products={products} />
+          </Suspense>
+
           {products.length === 0 && (
             <Grid item xs={12} sx={{ alignContent: "center" }}>
               <Typography
@@ -125,8 +130,8 @@ const OurProducts = () => {
           )}
         </Grid>
       </Box>
-    </Container>
+    </>
   );
 };
 
-export default OurProducts;
+export default OurProduct;

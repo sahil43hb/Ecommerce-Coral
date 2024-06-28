@@ -71,7 +71,7 @@ export const MuiTextField = (theme) => {
           lineHeight: "18.75px",
           padding: "6px",
           "&::placeholder": {
-            color: palette.stock.main,
+            color: palette.black[300],
             opacity: 1,
           },
           "&.Mui-disabled": {

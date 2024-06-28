@@ -20,7 +20,7 @@ export const MuiButton = (theme) => {
             fontWeight: 400,
             fontSize: "29px",
             lineHeight: "33.98px",
-            padding: "19px, 26px, 19px, 26px !important",
+            padding: "19px 26px 19px 26px !important",
           },
           textTransform: "none",
           zIndex: 4,
